@@ -9,7 +9,7 @@
 <body>
   <header class="site-header">
     <h1>プライバシーポリシー</h1>
-    <p>最終更新日: 2026年3月9日</p>
+    <p>最終更新日: 2026年3月10日</p>
   </header>
 
   <div class="container prose">
@@ -27,8 +27,8 @@
     <h2>端末に保存されるデータ</h2>
     <p>一部のアプリでは、設定情報やユーザーが入力したデータを端末内にのみ保存します。このデータは、ユーザーが明示的に設定した送信先（例：ユーザー所有のサーバー）に送信する場合を除き、端末外に出ることはありません。</p>
     <ul>
-      <li>認証情報（パスワード、トークン）はiOSのKeychainに安全に保存されます。</li>
-      <li>アプリの設定はローカルストレージ（UserDefaultsまたはローカルデータベース）に保存されます。</li>
+      <li>認証情報（パスワード、トークン）は各プラットフォームのセキュアストレージ（iOSではKeychain、AndroidではEncryptedSharedPreferences）に安全に保存されます。</li>
+      <li>アプリの設定はローカルストレージ（ローカルデータベースまたはプラットフォーム標準の設定領域）に保存されます。</li>
     </ul>
 
     <h2>データの送信について</h2>
@@ -54,7 +54,7 @@
 
     <p><strong>Data Collection:</strong> Our applications do not collect, store, or transmit any personal data to us or any third-party services. No analytics, no advertising, no cloud services operated by us.</p>
 
-    <p><strong>Data Stored on Your Device:</strong> Some apps store settings locally on your device. Credentials are stored securely in the iOS Keychain. This data never leaves your device except when explicitly sent to a destination you have configured.</p>
+    <p><strong>Data Stored on Your Device:</strong> Some apps store settings locally on your device. Credentials are stored securely using platform-native secure storage (iOS Keychain / Android EncryptedSharedPreferences). This data never leaves your device except when explicitly sent to a destination you have configured.</p>
 
     <p><strong>Data Transmitted:</strong> Some apps transmit data to user-configured servers only. We have no access to this data.</p>
 
