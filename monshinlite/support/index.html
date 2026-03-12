@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MonshinLite - サポート / Support</title>
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>MonshinLite サポート</h1>
+    <p>お困りのことがあればお気軽にお問い合わせください</p>
+  </header>
+
+  <div class="container prose">
+
+    <h2>よくある質問</h2>
+
+    <p><strong>Q: WebDAVサーバーとは何ですか？</strong></p>
+    <p>WebDAVは、HTTPを拡張したファイル共有プロトコルです。NAS（Synology, QNAPなど）やクラウドストレージの多くがWebDAVに対応しています。院内のファイルサーバーとして利用できます。</p>
+
+    <p><strong>Q: サーバーに接続できません</strong></p>
+    <p>以下を確認してください：</p>
+    <ul>
+      <li>URLが <code>http://</code> または <code>https://</code> で始まっているか</li>
+      <li>ユーザー名とパスワードが正しいか</li>
+      <li>iPadがサーバーと同じネットワークに接続されているか（ローカルサーバーの場合）</li>
+      <li>設定画面の「接続テスト」ボタンで接続を確認</li>
+    </ul>
+
+    <p><strong>Q: 問診票のPDFはどこに保存されますか？</strong></p>
+    <p>設定画面で指定したWebDAVサーバーのアップロードフォルダに保存されます。デフォルトは <code>/monshin/</code> フォルダです。</p>
+
+    <p><strong>Q: 送信に失敗した問診票を再送できますか？</strong></p>
+    <p>はい。履歴画面で失敗した問診票の「再送」ボタンをタップしてください。</p>
+
+    <p><strong>Q: 患者データのセキュリティは？</strong></p>
+    <p>患者データはiPad端末内のローカルデータベースに保存されます。パスワードはiOS Keychainに安全に保管されます。データは設定した保持期間後に自動削除されます。</p>
+
+    <p><strong>Q: iPadの向きは変更できますか？</strong></p>
+    <p>MonshinLiteは横向き（ランドスケープ）専用アプリです。問診入力の操作性を最適化するため、横向き固定で設計されています。</p>
+
+    <h2>お問い合わせ</h2>
+    <p>バグ報告や機能リクエストは <a href="https://github.com/tetsuomassaki/tmcx-apps/issues">GitHub Issues</a> からお願いします。</p>
+
+    <hr style="border-color: var(--color-border); margin: 48px 0;">
+
+    <h2>FAQ (English)</h2>
+
+    <p><strong>Q: What is a WebDAV server?</strong></p>
+    <p>WebDAV is a file sharing protocol based on HTTP. Many NAS devices (Synology, QNAP, etc.) and cloud storage services support WebDAV. It can be used as an in-house file server.</p>
+
+    <p><strong>Q: I can't connect to my server</strong></p>
+    <p>Please check the following:</p>
+    <ul>
+      <li>URL starts with <code>http://</code> or <code>https://</code></li>
+      <li>Username and password are correct</li>
+      <li>Your iPad is on the same network as the server (for local servers)</li>
+      <li>Use the "Connection Test" button in Settings to verify</li>
+    </ul>
+
+    <p><strong>Q: Where are the PDF questionnaires saved?</strong></p>
+    <p>They are saved to the upload folder on the WebDAV server configured in Settings. The default folder is <code>/monshin/</code>.</p>
+
+    <p><strong>Q: Can I resend a failed questionnaire?</strong></p>
+    <p>Yes. Tap the "Retry" button on the failed record in the History screen.</p>
+
+    <p><strong>Q: How is patient data secured?</strong></p>
+    <p>Patient data is stored in a local database on the iPad. Passwords are stored securely in the iOS Keychain. Data is automatically deleted after the configured retention period.</p>
+
+    <p><strong>Q: Can I change the iPad orientation?</strong></p>
+    <p>MonshinLite is a landscape-only app, designed to optimize the questionnaire input experience.</p>
+
+    <h2>Contact</h2>
+    <p>For bug reports or feature requests, please use <a href="https://github.com/tetsuomassaki/tmcx-apps/issues">GitHub Issues</a>.</p>
+
+    <div class="links">
+      <a href="../">MonshinLite</a>
+      <a href="../../privacy-policy/monshinlite/">Privacy Policy / プライバシーポリシー</a>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    <p><a href="../../">&larr; TMCX Apps</a></p>
+  </footer>
+</body>
+</html>

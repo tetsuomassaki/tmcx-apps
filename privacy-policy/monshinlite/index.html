@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プライバシーポリシー - MonshinLite</title>
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>MonshinLite プライバシーポリシー</h1>
+    <p>最終更新日: 2026年3月12日</p>
+  </header>
+
+  <div class="container prose">
+
+    <p>本プライバシーポリシーは、MonshinLite（以下「本アプリ」）に適用されます。本アプリは循環器内科クリニック向けのiPad電子問診票アプリです。</p>
+
+    <h2>データの収集について</h2>
+    <p>本アプリは、個人データを<strong>一切収集・保存・送信しません</strong>。具体的には：</p>
+    <ul>
+      <li><strong>アナリティクス・トラッキングなし</strong> &mdash; アナリティクスSDKやトラッキングツールは含まれていません。</li>
+      <li><strong>広告なし</strong> &mdash; 広告の表示や広告主へのデータ共有は行いません。</li>
+      <li><strong>クラウドサービスなし</strong> &mdash; 開発者が運営するクラウドサービスへの接続は行いません。</li>
+    </ul>
+
+    <h2>端末に保存されるデータ</h2>
+    <p>以下のデータは端末内にのみ保存されます：</p>
+    <ul>
+      <li><strong>問診データ</strong>（患者氏名・病歴・症状など） &mdash; アプリのローカルSQLiteデータベースに保存（端末ロック時は完全保護）</li>
+      <li><strong>WebDAVサーバー設定</strong>（URL・ユーザー名・アップロードフォルダ） &mdash; ローカルデータベースに保存</li>
+      <li><strong>パスワード</strong> &mdash; iOS Keychainに安全に保存</li>
+      <li><strong>送信履歴</strong>（患者名・タイムスタンプ・送信状態） &mdash; ローカルに保存、設定期間後に自動削除</li>
+    </ul>
+
+    <h2>データの送信について</h2>
+    <p>PDF問診票は、クリニック管理者が設定したWebDAVサーバーURL<strong>のみ</strong>に送信されます（HTTP Basic認証使用）。本アプリは他の送信先にデータを送信しません。</p>
+
+    <h2>医療データの取り扱い</h2>
+    <p>本アプリは患者の健康に関する情報を処理します。このデータは：</p>
+    <ul>
+      <li>iOSファイル保護によりローカル端末にのみ保存</li>
+      <li>クリニック自身のWebDAVサーバーにのみ送信</li>
+      <li>開発者やサードパーティとは一切共有しません</li>
+      <li>設定した保持期間後に自動削除</li>
+    </ul>
+
+    <h2>お子様のプライバシー</h2>
+    <p>本アプリは13歳未満のお子様の個人情報を意図的に収集することはありません。</p>
+
+    <h2>ポリシーの変更</h2>
+    <p>本プライバシーポリシーは随時更新される場合があります。変更があった場合は、このページに更新日とともに掲載します。</p>
+
+    <h2>お問い合わせ</h2>
+    <p>本プライバシーポリシーに関するご質問は、<a href="../../monshinlite/support/">サポートページ</a>、または<a href="https://github.com/tetsuomassaki/tmcx-apps/issues">GitHub Issues</a>からお問い合わせください。</p>
+
+    <hr style="border-color: var(--color-border); margin: 48px 0;">
+
+    <h2>Privacy Policy (English)</h2>
+
+    <p>This privacy policy applies to MonshinLite ("the App"), a medical questionnaire app for cardiology clinics.</p>
+
+    <p><strong>Data Collection:</strong> The App does not collect, store, or transmit any personal data to the developer or any third-party services. No analytics, no advertising, no cloud services operated by the developer.</p>
+
+    <p><strong>Data Stored on Your Device:</strong> Questionnaire data (patient name, medical history, symptoms) is stored in a local SQLite database with iOS file protection. WebDAV settings are stored locally. Passwords are stored securely in the iOS Keychain.</p>
+
+    <p><strong>Data Transmitted:</strong> PDF questionnaires are sent only to the WebDAV server URL configured by the clinic administrator. The App does not send data to any other destination.</p>
+
+    <p><strong>Medical Data Handling:</strong> Patient health data is stored only on the local device, transmitted only to the clinic's own WebDAV server, never shared with the developer or third parties, and automatically deleted after the configured retention period.</p>
+
+    <p><strong>Children's Privacy:</strong> The App does not knowingly collect personal information from children under 13.</p>
+
+    <p><strong>Contact:</strong> Questions? Please visit our <a href="../../monshinlite/support/">support page</a> or open an issue on <a href="https://github.com/tetsuomassaki/tmcx-apps/issues">GitHub</a>.</p>
+
+  </div>
+
+  <footer class="site-footer">
+    <p><a href="../../monshinlite/">MonshinLite</a> &nbsp;|&nbsp; <a href="../../">&larr; TMCX Apps</a></p>
+  </footer>
+</body>
+</html>
