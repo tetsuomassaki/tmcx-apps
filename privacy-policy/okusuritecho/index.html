@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プライバシーポリシー - おくすり手帖</title>
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>おくすり手帖 プライバシーポリシー</h1>
+    <p>最終更新日: 2026年3月19日</p>
+  </header>
+
+  <div class="container prose">
+
+    <p>本プライバシーポリシーは、おくすり手帖（以下「本アプリ」）に適用されます。本アプリは処方箋QRコードをスキャンしてお薬情報を管理するiOS/iPadOSアプリです。</p>
+
+    <h2>データの収集について</h2>
+    <p>本アプリは、個人データを<strong>一切収集・保存・送信しません</strong>。具体的には：</p>
+    <ul>
+      <li><strong>アナリティクス・トラッキングなし</strong> &mdash; アナリティクスSDKやトラッキングツールは含まれていません。</li>
+      <li><strong>広告なし</strong> &mdash; 広告の表示や広告主へのデータ共有は行いません。</li>
+      <li><strong>クラウドサービスなし</strong> &mdash; 開発者が運営するクラウドサービスへの接続は行いません。</li>
+    </ul>
+
+    <h2>端末に保存されるデータ</h2>
+    <p>以下のデータは端末内にのみ保存されます：</p>
+    <ul>
+      <li><strong>処方データ</strong>（処方日、医療機関名、薬品名、用法用量等） &mdash; Core Data (SQLite) に保存（iOS Data Protectionにより端末ロック時は暗号化）</li>
+      <li><strong>アプリ設定</strong>（保存日数、文字サイズ等） &mdash; UserDefaultsに保存</li>
+      <li><strong>QRコード生データ</strong> &mdash; Core Dataに保存（再解析用）</li>
+    </ul>
+
+    <h2>データの送信について</h2>
+    <p>本アプリは現在（Phase 1）、外部へのデータ送信を<strong>一切行いません</strong>。完全オフラインで動作します。</p>
+    <p>将来のアップデート（Phase 2）でAI機能を追加する際は、薬品名のみをAIサービスに送信する可能性があります。その場合でも、患者氏名・生年月日・医療機関名等の個人情報は送信しません。この変更は事前に本ポリシーを更新してお知らせします。</p>
+
+    <h2>カメラ権限について</h2>
+    <p>本アプリはカメラ権限を要求します。カメラは<strong>処方箋QRコードの読み取りのみ</strong>に使用されます。撮影した画像は保存されず、QRコードのデコード処理にのみ使用されます。</p>
+
+    <h2>医療データに関する免責事項</h2>
+    <p>本アプリは医療行為（診断・治療・処方）を行うものではありません。本アプリに表示される情報は、処方箋QRコードから読み取ったデータをそのまま表示するものです。将来追加されるAI機能による回答は参考情報であり、医療上の判断は必ず担当の医師または薬剤師にご相談ください。</p>
+
+    <h2>お子様のプライバシー</h2>
+    <p>本アプリは13歳未満のお子様の個人情報を意図的に収集することはありません。</p>
+
+    <h2>ポリシーの変更</h2>
+    <p>本プライバシーポリシーは随時更新される場合があります。変更があった場合は、このページに更新日とともに掲載します。</p>
+
+    <h2>お問い合わせ</h2>
+    <p>本プライバシーポリシーに関するご質問は、<a href="../../okusuritecho/support/">サポートページ</a>、または<a href="https://github.com/tetsuomassaki/tmcx-apps/issues">GitHub Issues</a>からお問い合わせください。</p>
+
+    <hr style="border-color: var(--color-border); margin: 48px 0;">
+
+    <h2>Privacy Policy (English)</h2>
+
+    <p>This privacy policy applies to OkusuriTecho ("the App"), a prescription QR code scanning and medication management app for iOS/iPadOS.</p>
+
+    <p><strong>Data Collection:</strong> The App does not collect, store, or transmit any personal data to the developer or any third-party services. No analytics, no advertising, no cloud services operated by the developer.</p>
+
+    <p><strong>Data Stored on Your Device:</strong> Prescription data (prescription date, medical institution name, drug names, dosage, etc.) is stored in Core Data (SQLite) with iOS Data Protection encryption. App settings (retention period, font size, etc.) are stored in UserDefaults. Raw QR code data is stored in Core Data for re-parsing.</p>
+
+    <p><strong>Data Transmission:</strong> The App currently (Phase 1) does not transmit any data externally. It operates fully offline. In a future update (Phase 2), drug names only may be sent to an AI service for analysis. Personal information such as patient name, date of birth, or medical institution name will never be transmitted. This policy will be updated prior to any such change.</p>
+
+    <p><strong>Camera Permission:</strong> The App requires camera access solely for scanning prescription QR codes. No images are stored; the camera feed is used only for QR code decoding.</p>
+
+    <p><strong>Medical Disclaimer:</strong> The App does not provide medical services (diagnosis, treatment, or prescriptions). Information displayed is read directly from prescription QR codes. Any future AI-powered responses are for reference only. Always consult your physician or pharmacist for medical decisions.</p>
+
+    <p><strong>Children's Privacy:</strong> The App does not knowingly collect personal information from children under 13.</p>
+
+    <p><strong>Contact:</strong> Questions? Please visit our <a href="../../okusuritecho/support/">support page</a> or open an issue on <a href="https://github.com/tetsuomassaki/tmcx-apps/issues">GitHub</a>.</p>
+
+  </div>
+
+  <footer class="site-footer">
+    <p><a href="../../okusuritecho/">おくすり手帖</a> &nbsp;|&nbsp; <a href="../../">&larr; TMCX Apps</a></p>
+  </footer>
+</body>
+</html>
