@@ -33,8 +33,12 @@
     </ul>
 
     <h2>データの送信について</h2>
-    <p>本アプリは現在（Phase 1）、外部へのデータ送信を<strong>一切行いません</strong>。完全オフラインで動作します。</p>
-    <p>将来のアップデート（Phase 2）でAI機能を追加する際は、薬品名のみをAIサービスに送信する可能性があります。その場合でも、患者氏名・生年月日・医療機関名等の個人情報は送信しません。この変更は事前に本ポリシーを更新してお知らせします。</p>
+    <p>本アプリは処方箋データ・個人情報を外部サーバーに<strong>一切送信しません</strong>。</p>
+    <p>ただし、以下の通信を行う場合があります：</p>
+    <ul>
+      <li><strong>薬品マスタの更新</strong> &mdash; 設定画面から手動操作した場合のみ、社会保険診療報酬支払基金（SSK）のWebサイトから薬品マスタ（レセプト電算コードと薬品名の対応表）をダウンロードします。この際、処方データや個人情報は送信されません。</li>
+    </ul>
+    <p>将来のアップデートでAI機能を追加する際は、薬品名のみをAIサービスに送信する可能性があります。その場合でも、患者氏名・生年月日・医療機関名等の個人情報は送信しません。この変更は事前に本ポリシーを更新してお知らせします。</p>
 
     <h2>カメラ権限について</h2>
     <p>本アプリはカメラ権限を要求します。カメラは<strong>処方箋QRコードの読み取りのみ</strong>に使用されます。撮影した画像は保存されず、QRコードのデコード処理にのみ使用されます。</p>
@@ -61,7 +65,7 @@
 
     <p><strong>Data Stored on Your Device:</strong> Prescription data (prescription date, medical institution name, drug names, dosage, etc.) is stored in Core Data (SQLite) with iOS Data Protection encryption. App settings (retention period, font size, etc.) are stored in UserDefaults. Raw QR code data is stored in Core Data for re-parsing.</p>
 
-    <p><strong>Data Transmission:</strong> The App currently (Phase 1) does not transmit any data externally. It operates fully offline. In a future update (Phase 2), drug names only may be sent to an AI service for analysis. Personal information such as patient name, date of birth, or medical institution name will never be transmitted. This policy will be updated prior to any such change.</p>
+    <p><strong>Data Transmission:</strong> The App does not transmit any prescription data or personal information to external servers. The only network communication is the optional drug master update: when manually triggered in Settings, the App downloads drug master data (a mapping of billing codes to drug names) from the SSK (Social Insurance Medical Fee Payment Fund) website. No prescription data or personal information is sent during this process. In a future update, drug names only may be sent to an AI service for analysis. Personal information such as patient name, date of birth, or medical institution name will never be transmitted. This policy will be updated prior to any such change.</p>
 
     <p><strong>Camera Permission:</strong> The App requires camera access solely for scanning prescription QR codes. No images are stored; the camera feed is used only for QR code decoding.</p>
 
