@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プライバシーポリシー - からだつづり</title>
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>からだつづり プライバシーポリシー</h1>
+    <p>最終更新日: 2026年4月19日</p>
+  </header>
+
+  <div class="container prose">
+
+    <p>本プライバシーポリシーは、からだつづり（以下「本アプリ」）に適用されます。本アプリは、SmartBlood対応医療機関で受け取った検査結果QRコードをスキャンし、検査値を記録・可視化するiOSアプリです。</p>
+
+    <h2>データの収集について</h2>
+    <p>本アプリは、個人データを<strong>一切収集・保存・送信しません</strong>。具体的には:</p>
+    <ul>
+      <li><strong>ネットワーク通信なし</strong> &mdash; 本アプリは完全オフラインで動作します。インターネット通信を一切行いません。</li>
+      <li><strong>アナリティクス・トラッキングなし</strong> &mdash; アナリティクスSDKやトラッキングツールは含まれていません。</li>
+      <li><strong>広告なし</strong> &mdash; 広告の表示や広告主へのデータ共有は行いません。</li>
+      <li><strong>クラウドサービスなし</strong> &mdash; 開発者が運営するクラウドサービスへの接続は行いません。iCloud同期も使用しません。</li>
+      <li><strong>第三者提供なし</strong> &mdash; いかなる第三者にもデータを提供しません。</li>
+    </ul>
+
+    <h2>端末に保存されるデータ</h2>
+    <p>以下のデータは端末内にのみ保存されます:</p>
+    <ul>
+      <li><strong>検査結果データ</strong>（検査日、医療機関名、医師名、年齢、性別、検査項目コード、検査値、単位、基準範囲等） &mdash; SwiftData (SQLite) に保存</li>
+      <li><strong>ユーザー登録のテストコード紐付け情報</strong> &mdash; SwiftData に保存</li>
+      <li><strong>アプリ設定</strong>（生体認証の有効/無効、表示設定等） &mdash; UserDefaultsに保存</li>
+    </ul>
+    <p>すべてのデータは iOS Data Protection（<code>.completeUnlessOpen</code>）により、端末ロック時は暗号化されます。</p>
+
+    <h2>データの送信について</h2>
+    <p>本アプリは、検査結果データ・個人情報を含むあらゆるデータを外部サーバーに<strong>一切送信しません</strong>。すべての処理（QRコードのデコード、データの保存、グラフ表示、検査項目の解説表示など）は、お使いの端末内で完結します。</p>
+
+    <h2>カメラ権限について</h2>
+    <p>本アプリはカメラ権限を要求します。カメラは<strong>検査結果QRコードの読み取りのみ</strong>に使用されます。撮影した画像は保存されず、QRコードのデコード処理にのみ使用されます。</p>
+
+    <h2>生体認証（Face ID / Touch ID）について</h2>
+    <p>本アプリは、オプションとして生体認証によるアプリロック機能を提供します。生体認証データ（顔・指紋）は iOS のセキュアエンクレーブ内でのみ処理され、本アプリが生体認証データそのものにアクセスすることはありません。アプリは認証の成否のみを受け取ります。</p>
+
+    <h2>医療データに関する免責事項</h2>
+    <p>本アプリは医療機器ではなく、診断・治療・処方等の医療行為を行うものではありません。本アプリに表示される情報は、検査結果QRコードから読み取ったデータ、および公開された一般的な検査項目の解説情報をそのまま表示するものです。医療上の判断は必ず担当の医師または医療従事者にご相談ください。</p>
+
+    <h2>お子様のプライバシー</h2>
+    <p>本アプリは13歳未満のお子様の個人情報を意図的に収集することはありません。本アプリはいかなる個人情報も収集しません。</p>
+
+    <h2>ポリシーの変更</h2>
+    <p>本プライバシーポリシーは随時更新される場合があります。変更があった場合は、このページに更新日とともに掲載します。</p>
+
+    <h2>お問い合わせ</h2>
+    <p>本プライバシーポリシーに関するご質問は、<a href="../../karadatsuzuri/support/">サポートページ</a>、または<a href="https://github.com/tetsuomassaki/tmcx-apps/issues">GitHub Issues</a>からお問い合わせください。</p>
+
+    <hr style="border-color: var(--color-border); margin: 48px 0;">
+
+    <h2>Privacy Policy (English)</h2>
+
+    <p>This privacy policy applies to Karada Tsuzuri ("the App"), an iOS app that scans SmartBlood lab result QR codes to record and visualize test values.</p>
+
+    <p><strong>Data Collection:</strong> The App does not collect, store, or transmit any personal data. Specifically:</p>
+    <ul>
+      <li><strong>No network communication</strong> &mdash; The App operates fully offline. It performs no internet communication whatsoever.</li>
+      <li><strong>No analytics or tracking</strong> &mdash; No analytics SDKs or tracking tools are included.</li>
+      <li><strong>No advertising</strong> &mdash; No ads are shown and no data is shared with advertisers.</li>
+      <li><strong>No cloud services</strong> &mdash; No connection to developer-operated cloud services. iCloud sync is not used.</li>
+      <li><strong>No third-party data sharing</strong> &mdash; Data is never provided to any third party.</li>
+    </ul>
+
+    <p><strong>Data Stored on Your Device:</strong> Lab result data (test date, medical facility name, physician name, age, sex, test item codes, test values, units, reference ranges), user-registered test code mappings, and app settings (biometric lock on/off, display preferences) are stored in SwiftData (SQLite) and UserDefaults. All data is encrypted via iOS Data Protection (<code>.completeUnlessOpen</code>) when the device is locked.</p>
+
+    <p><strong>Data Transmission:</strong> The App transmits no data (including lab results and personal information) to any external server. All processing &mdash; QR decoding, data storage, graph display, test item explanations &mdash; is completed on-device.</p>
+
+    <p><strong>Camera Permission:</strong> The App requires camera access solely for scanning lab result QR codes. No images are stored; the camera feed is used only for QR code decoding.</p>
+
+    <p><strong>Biometric Authentication:</strong> The App optionally supports app lock via Face ID / Touch ID. Biometric data (face / fingerprint) is processed exclusively within iOS's Secure Enclave; the App never has access to the raw biometric data and only receives the authentication result.</p>
+
+    <p><strong>Medical Disclaimer:</strong> The App is not a medical device and does not provide any medical service (diagnosis, treatment, or prescription). Information displayed is read directly from lab result QR codes along with publicly available general explanations of test items. Always consult your physician or healthcare professional for medical decisions.</p>
+
+    <p><strong>Children's Privacy:</strong> The App does not knowingly collect personal information from children under 13. The App does not collect any personal information at all.</p>
+
+    <p><strong>Policy Changes:</strong> This privacy policy may be updated. Any changes will be posted on this page with a revised date.</p>
+
+    <p><strong>Contact:</strong> Questions? Please visit our <a href="../../karadatsuzuri/support/">support page</a> or open an issue on <a href="https://github.com/tetsuomassaki/tmcx-apps/issues">GitHub</a>.</p>
+
+  </div>
+
+  <footer class="site-footer">
+    <p><a href="../../karadatsuzuri/">からだつづり</a> &nbsp;|&nbsp; <a href="../../">&larr; TMCX Apps</a></p>
+  </footer>
+</body>
+</html>
