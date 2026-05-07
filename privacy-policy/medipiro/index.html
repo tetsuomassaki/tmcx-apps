@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プライバシーポリシー - MediPiro</title>
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>MediPiro プライバシーポリシー</h1>
+    <p>最終更新日: 2026年5月7日</p>
+  </header>
+
+  <div class="container prose">
+
+    <p>本プライバシーポリシーは、MediPiro（以下「本アプリ」）に適用されます。本アプリは、医療現場・薬局・調剤現場での患者ラベル印刷を支援する iOS アプリで、QRコード読み取りまたは手入力した患者情報を、同一 Wi-Fi ネットワーク上の Brother ラベルプリンタへ印刷するために使用されます。</p>
+
+    <h2>データの収集について</h2>
+    <p>本アプリは、個人データを<strong>外部サーバーに一切送信しません</strong>。具体的には:</p>
+    <ul>
+      <li><strong>外部サーバーへの送信なし</strong> &mdash; 患者情報・操作ログ・端末識別情報を外部サーバーへ一切送信しません。</li>
+      <li><strong>アナリティクス・トラッキングなし</strong> &mdash; Firebase / Google Analytics 等のアナリティクス SDK やトラッキングツールは含まれていません。</li>
+      <li><strong>広告なし</strong> &mdash; 広告の表示や広告主へのデータ共有は行いません。</li>
+      <li><strong>クラウドサービスなし</strong> &mdash; 開発者が運営するクラウドサービスへの接続は行いません。iCloud 同期も使用しません。</li>
+      <li><strong>第三者提供なし</strong> &mdash; いかなる第三者にもデータを提供しません。</li>
+    </ul>
+
+    <h2>端末に保存されるデータ</h2>
+    <p>以下のデータは、お使いの iPhone 内にのみ保存されます:</p>
+    <ul>
+      <li><strong>患者情報の入力履歴</strong>（氏名、ID、関連メモ等） &mdash; Core Data (SQLite) に保存</li>
+      <li><strong>印刷履歴</strong>（印刷日時、ラベル内容） &mdash; Core Data に保存</li>
+      <li><strong>アプリ設定</strong>（プリンタ IP アドレス、対応機種・用紙の選択、生体認証の有効/無効等） &mdash; UserDefaults に保存</li>
+    </ul>
+    <p>すべてのデータは iOS Data Protection により、端末ロック時は暗号化されます。</p>
+
+    <h2>ローカルネットワーク通信について</h2>
+    <p>本アプリは、患者ラベルを印刷するために<strong>同一 Wi-Fi ネットワーク上の Brother ラベルプリンタとのみ</strong>通信を行います。</p>
+    <ul>
+      <li><strong>検出方式</strong>: Bonjour（mDNS）によるサービス検出（<code>_pdl-datastream._tcp</code> / <code>_printer._tcp</code> / <code>_ipp._tcp</code>）</li>
+      <li><strong>印刷送信</strong>: TCP 9100 ポート（HP JetDirect / Raw 9100 規格）でラベルデータをプリンタへ直接送信</li>
+      <li><strong>送信先</strong>: ユーザーが選択または指定した Brother プリンタの IP アドレスのみ</li>
+      <li><strong>インターネット送信なし</strong>: 上記通信はすべて LAN 内で完結し、インターネット経由で外部サーバーへ送信されることは一切ありません。</li>
+    </ul>
+    <p>ローカルネットワーク権限は、上記プリンタ通信のためにのみ使用します。</p>
+
+    <h2>カメラ権限について</h2>
+    <p>本アプリはカメラ権限を要求します。カメラは<strong>患者情報の QR コード読み取りのみ</strong>に使用されます。撮影した画像はファイルとして保存されず、QR コードのデコード処理にのみ使用されます。</p>
+
+    <h2>生体認証（Face ID / Touch ID）について</h2>
+    <p>本アプリは、印刷履歴の閲覧および全消去操作を保護するため、生体認証を要求する場面があります。生体認証データ（顔・指紋）は iOS のセキュアエンクレーブ内でのみ処理され、本アプリが生体認証データそのものにアクセスすることはありません。アプリは認証の成否のみを受け取ります。</p>
+
+    <h2>Brother Print SDK について</h2>
+    <p>本アプリは、Brother Industries, Ltd. が提供する Brother Print SDK V4.13.0 を組み込んでいます。同 SDK は、ユーザーが選択した Brother プリンタへラベルデータを送信するために使用され、本 SDK 自体が外部サーバー（Brother のクラウドや解析サービス等）と通信することはありません（ローカルプリンタへの直接通信のみ）。</p>
+
+    <h2>医療データに関する免責事項</h2>
+    <p>本アプリは医療機器ではなく、診断・治療・処方等の医療行為を行うものではありません。本アプリはあくまで患者識別ラベルの印刷を支援するツールであり、本アプリに表示される情報の正確性・完全性について保証するものではありません。医療上の判断は必ず担当の医師または医療従事者にご相談ください。</p>
+
+    <h2>患者情報の取り扱いに関する利用者への注意</h2>
+    <p>本アプリは患者情報をラベルとして印刷する性質上、入力された患者氏名・ID 等は端末内に保存されます。利用にあたっては、以下の点にご留意ください:</p>
+    <ul>
+      <li>端末を共用する場合は、画面ロックおよび本アプリの生体認証ロックを必ず有効にしてください。</li>
+      <li>印刷履歴に保存された情報は、定期的に「全消去」機能で削除することを推奨します。</li>
+      <li>端末を破棄・譲渡する際は、必ず本アプリをアンインストールするか、端末を初期化してください。</li>
+    </ul>
+
+    <h2>お子様のプライバシー</h2>
+    <p>本アプリは医療従事者向けの業務支援アプリであり、13 歳未満のお子様の利用は想定していません。本アプリは個人情報を外部に送信することはありません。</p>
+
+    <h2>ポリシーの変更</h2>
+    <p>本プライバシーポリシーは随時更新される場合があります。変更があった場合は、このページに更新日とともに掲載します。</p>
+
+    <h2>商標について</h2>
+    <p>Brother、QL-820NWB、QL-720NW、DK-1201、DK-2205 は Brother Industries, Ltd. の商標です。iPhone、Face ID、Touch ID、iCloud は Apple Inc. の商標です。本アプリは Brother Industries, Ltd. による公認・推奨を受けたものではありません。</p>
+
+    <h2>お問い合わせ</h2>
+    <p>本プライバシーポリシーに関するご質問は、<a href="../../medipiro/support/">サポートページ</a>、または<a href="https://github.com/tetsuomassaki/tmcx-apps/issues">GitHub Issues</a>からお問い合わせください。</p>
+
+    <hr style="border-color: var(--color-border); margin: 48px 0;">
+
+    <h2>Privacy Policy (English)</h2>
+
+    <p>This privacy policy applies to MediPiro ("the App"), an iOS app that assists medical facilities, pharmacies, and dispensaries in printing patient identification labels. The App reads patient information from QR codes or manual input and prints it to a Brother label printer on the same Wi-Fi network.</p>
+
+    <p><strong>Data Collection:</strong> The App does not transmit any personal data to external servers. Specifically:</p>
+    <ul>
+      <li><strong>No external server transmission</strong> &mdash; Patient information, operation logs, and device identifiers are never sent to any external server.</li>
+      <li><strong>No analytics or tracking</strong> &mdash; No analytics SDKs (Firebase, Google Analytics, etc.) or tracking tools are included.</li>
+      <li><strong>No advertising</strong> &mdash; No ads are shown and no data is shared with advertisers.</li>
+      <li><strong>No cloud services</strong> &mdash; No connection to developer-operated cloud services. iCloud sync is not used.</li>
+      <li><strong>No third-party data sharing</strong> &mdash; Data is never provided to any third party.</li>
+    </ul>
+
+    <p><strong>Data Stored on Your Device:</strong> Patient input history (name, ID, related notes), print history (timestamp, label content), and app settings (printer IP address, supported printer/paper selection, biometric on/off) are stored in Core Data (SQLite) and UserDefaults. All data is encrypted via iOS Data Protection when the device is locked.</p>
+
+    <p><strong>Local Network Communication:</strong> The App communicates only with a Brother label printer on the same Wi-Fi network in order to print patient labels. Discovery uses Bonjour (mDNS) services (<code>_pdl-datastream._tcp</code>, <code>_printer._tcp</code>, <code>_ipp._tcp</code>); printing sends label data directly to the printer's TCP port 9100 (HP JetDirect / Raw 9100). All communication stays within the local network and is never relayed to an external server.</p>
+
+    <p><strong>Camera Permission:</strong> The App requires camera access solely for scanning QR codes that contain patient information. No images are stored as files; the camera feed is used only for QR code decoding.</p>
+
+    <p><strong>Biometric Authentication:</strong> The App requests biometric authentication to gate access to print history and the bulk-delete operation. Biometric data (face / fingerprint) is processed exclusively within iOS's Secure Enclave; the App never has access to the raw biometric data and only receives the authentication result.</p>
+
+    <p><strong>Brother Print SDK:</strong> The App embeds the Brother Print SDK V4.13.0 provided by Brother Industries, Ltd. The SDK is used solely to send label data to a Brother printer selected by the user; the SDK itself does not communicate with any external server (such as Brother's cloud or analytics services).</p>
+
+    <p><strong>Medical Disclaimer:</strong> The App is not a medical device and does not provide any medical service (diagnosis, treatment, or prescription). The App is a label printing utility, and the accuracy or completeness of displayed information is not guaranteed. Always consult your physician or healthcare professional for medical decisions.</p>
+
+    <p><strong>User Responsibilities Regarding Patient Information:</strong> Always enable device passcode and the App's biometric lock when the device is shared. Periodically delete print history using the bulk-delete feature. When disposing of or transferring the device, uninstall the App or factory-reset the device.</p>
+
+    <p><strong>Children's Privacy:</strong> The App is intended for medical professionals and is not directed at children under 13. The App does not collect any personal information for external transmission.</p>
+
+    <p><strong>Policy Changes:</strong> This privacy policy may be updated. Any changes will be posted on this page with a revised date.</p>
+
+    <p><strong>Trademarks:</strong> "Brother", "QL-820NWB", "QL-720NW", "DK-1201", "DK-2205" are trademarks of Brother Industries, Ltd. "iPhone", "Face ID", "Touch ID", and "iCloud" are trademarks of Apple Inc. MediPiro is not endorsed by or affiliated with Brother Industries, Ltd.</p>
+
+    <p><strong>Contact:</strong> Questions? Please visit our <a href="../../medipiro/support/">support page</a> or open an issue on <a href="https://github.com/tetsuomassaki/tmcx-apps/issues">GitHub</a>.</p>
+
+  </div>
+
+  <footer class="site-footer">
+    <p><a href="../../medipiro/">MediPiro</a> &nbsp;|&nbsp; <a href="../../">&larr; TMCX Apps</a></p>
+  </footer>
+</body>
+</html>
