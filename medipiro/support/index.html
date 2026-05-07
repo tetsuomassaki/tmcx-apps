@@ -90,6 +90,67 @@
 
     <h3>セキュリティ・プライバシー</h3>
 
+    <h4>セキュリティプリセットについて</h4>
+
+    <p>設定画面の「セキュリティ」セクションでは、用途に応じた 3 種類のプリセットから選択できます（既定は <strong>Standard</strong>）。各プリセットは以下の組み合わせで構成されており、個別の Toggle を上書きすることもできます（個別変更すると自動的に <strong>Custom</strong> に切り替わります）。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>設定項目</th>
+          <th>Strict（厳格）</th>
+          <th>Standard（既定）</th>
+          <th>Relaxed（緩和）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>履歴閲覧に生体認証を要求</td><td style="text-align:center">ON</td><td style="text-align:center">OFF</td><td style="text-align:center">OFF</td></tr>
+        <tr><td>履歴全消去に生体認証を要求</td><td style="text-align:center">ON</td><td style="text-align:center">ON</td><td style="text-align:center">OFF</td></tr>
+        <tr><td>削除前に確認ダイアログ</td><td style="text-align:center">ON</td><td style="text-align:center">ON</td><td style="text-align:center">OFF</td></tr>
+        <tr><td>履歴のコピーを許可</td><td style="text-align:center">OFF</td><td style="text-align:center">OFF</td><td style="text-align:center">ON</td></tr>
+        <tr><td>プライバシー画面(背面マスク)</td><td style="text-align:center">ON</td><td style="text-align:center">ON</td><td style="text-align:center">OFF</td></tr>
+        <tr><td>PII 入力欄でキーボード予測を無効化</td><td style="text-align:center">ON</td><td style="text-align:center">ON</td><td style="text-align:center">OFF</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>選び方の目安</strong></p>
+    <ul>
+      <li><strong>Strict（厳格）</strong>: ナースステーションなどで複数人が共有する iPhone 向け。履歴を覗くだけでも生体認証が必要で、画面録画やキーボード学習からの情報漏洩を最大限防ぎます。</li>
+      <li><strong>Standard（既定）</strong>: 個人持ちの業務 iPhone 向け。履歴閲覧は端末ロックに任せつつ、削除など重要な操作には認証と確認ダイアログを通します。新規インストール時の既定値です。</li>
+      <li><strong>Relaxed（緩和）</strong>: セキュリティ要件が緩い環境や検証用途向け。履歴のコピーや高速操作が可能になりますが、共用端末では推奨しません。選択時に警告ダイアログが表示されます。</li>
+      <li><strong>Custom（カスタム）</strong>: 上記プリセットから個別 Toggle を 1 つでも変更すると自動的に切り替わる派生モードです。直接選ぶものではなく、「現在の設定がどのプリセットにも完全一致していない」ことを示します。</li>
+    </ul>
+
+    <p><strong>安全策</strong>: 「履歴の全消去」操作には、生体認証 か 確認ダイアログ の少なくとも一方が必ず通る仕組みになっています。「履歴全消去に生体認証を要求」を OFF にすると、「削除前に確認ダイアログ」は自動的に ON で固定されます（両方 OFF にはできません）。</p>
+
+    <h4>プライバシー画面（背面マスク）について</h4>
+
+    <p>「プライバシー画面」が ON のとき、アプリを前面以外にした瞬間に画面全体を MediPiro のロゴ画面で覆い、入力中の患者情報が外部に映り込まないようにします。</p>
+
+    <p><strong>発動するタイミング</strong></p>
+    <ul>
+      <li>ホームボタン／ホームインジケーターでホーム画面に戻る</li>
+      <li>App Switcher（マルチタスクの一覧）を開く</li>
+      <li>別のアプリに切り替える</li>
+      <li>着信・通知・コントロールセンターを開いた瞬間</li>
+      <li>画面録画中に他のアプリに切り替える</li>
+    </ul>
+
+    <p><strong>保護される情報</strong></p>
+    <p>入力中の患者 ID・氏名・生年月日・QR コードプレビュー、印刷履歴の一覧などが、ロゴ画面の裏に完全に隠されます。Face ID 認証の途中であっても、画面が露出することはありません。</p>
+
+    <p><strong>設定方法</strong></p>
+    <p>設定画面 → セキュリティ → 「プライバシー画面（背面マスク）」で ON / OFF を切り替えられます。Strict / Standard プリセットでは ON、Relaxed プリセットでは OFF が既定です。</p>
+
+    <p><strong>ご注意</strong></p>
+    <ul>
+      <li>iOS が App Switcher のサムネイルを撮影するタイミングで瞬時にマスク表示するため、フェードアニメーションは使用していません（情報露出リスクを最小化するための意図的な設計です）</li>
+      <li>画面録画中にホーム画面や他アプリへ切り替えると、録画には MediPiro のロゴ画面が記録されます（患者情報の代わりにロゴが残る形で保護されます）</li>
+      <li>ロゴ画面は VoiceOver からも非表示扱いなので、読み上げで内容が漏れることもありません</li>
+    </ul>
+
+    <h4>よくあるご質問</h4>
+
     <p><strong>Q: 入力した患者情報はどこに保存されますか？</strong></p>
     <p>すべて端末内のみに保存されます。外部サーバーへの送信は一切行いません。プリンタへの送信は同一 LAN 内で完結します。</p>
 
