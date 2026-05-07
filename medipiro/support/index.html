@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MediPiro - サポート / Support</title>
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>MediPiro サポート</h1>
+    <p>お困りのことがあればお気軽にお問い合わせください</p>
+  </header>
+
+  <div class="container prose">
+
+    <h2>アプリ概要</h2>
+    <p>MediPiro は、医療現場・薬局・調剤現場での患者ラベル印刷を支援する iOS アプリです。QR コード読み取りまたは手入力した患者情報を、同一 Wi-Fi 上の Brother ラベルプリンタへワンタップで送信できます。</p>
+    <ul>
+      <li><strong>対応 OS</strong>: iOS 18.0 以上</li>
+      <li><strong>対応デバイス</strong>: iPhone（iPad / Mac / Apple Vision 非対応）</li>
+      <li><strong>対応プリンタ</strong>: Brother QL-820NWB / QL-720NW など Brother Print SDK V4.13.0 対応機種</li>
+      <li><strong>対応用紙</strong>: DK-1201（29×90 mm ダイカット）/ DK-2205（62 mm 連続）</li>
+      <li><strong>通信方式</strong>: Bonjour（mDNS）検出 + TCP 9100 直接送信</li>
+      <li><strong>データ保存</strong>: 端末内（Core Data / UserDefaults）。外部サーバー送信なし</li>
+    </ul>
+
+    <h2>よくある質問</h2>
+
+    <h3>プリンタ・ネットワーク</h3>
+
+    <p><strong>Q: プリンタが見つかりません</strong></p>
+    <p>以下を順に確認してください:<br>
+    1. プリンタの電源が入っており、有線 LAN または Wi-Fi で接続されていますか<br>
+    2. iPhone とプリンタが <strong>同じ Wi-Fi（同じセグメント）</strong> に接続されていますか（ゲスト Wi-Fi や 2.4GHz / 5GHz の分離環境では検出できない場合があります）<br>
+    3. 設定アプリ → MediPiro → ローカルネットワーク を ON にしてください<br>
+    4. 設定画面で「プリンタ再検索」をタップしてください<br>
+    5. 検出に失敗する場合、設定画面で IP 編集モードに切り替え、プリンタの IP アドレスを直接入力してください</p>
+
+    <p><strong>Q: プリンタの IP アドレスを調べるには？</strong></p>
+    <p>Brother プリンタの操作パネルまたは Brother iPrint&amp;Label アプリでネットワーク設定を確認してください。プリンタ本体のメニューから「ネットワーク設定」→「TCP/IP」→「IP アドレス」で表示されます。</p>
+
+    <p><strong>Q: 印刷ボタンを押したのに印刷されません</strong></p>
+    <p>用紙切れ・カバーオープン・電源 OFF の警告が画面に出ていないか確認してください。TCP 9100 がプリンタ側で有効になっていることを確認してください（Brother プリンタは標準で有効）。別の印刷アプリ（iPrint&amp;Label 等）からテスト印刷ができるかを試して、本アプリ固有の問題かネットワーク全体の問題かを切り分けてください。</p>
+
+    <p><strong>Q: 印刷が遅い・タイムアウトする</strong></p>
+    <p>iPhone とプリンタを <strong>同じアクセスポイント</strong> に接続してください。ルータを跨ぐ通信（VLAN 越え等）はサポートしていません。大量の連続印刷時は、プリンタ側のジョブキューが詰まっていないかを確認してください。</p>
+
+    <p><strong>Q: 「ローカルネットワークの使用を許可しますか？」のダイアログが出ない</strong></p>
+    <p>iOS 14 以降では Bonjour 利用にローカルネットワーク権限が必要です。一度拒否すると同ダイアログは再表示されません。設定アプリ → MediPiro → ローカルネットワーク を ON にしてください。</p>
+
+    <h3>用紙</h3>
+
+    <p><strong>Q: どの用紙に対応していますか？</strong></p>
+    <p>DK-1201（29 × 90 mm ダイカットラベル）と DK-2205（62 mm 連続テープ）に対応しています。設定画面で対応機種・対応用紙が明記されています。</p>
+
+    <p><strong>Q: 用紙を変更したい / 違う用紙を入れたら印刷が崩れる</strong></p>
+    <p>プリンタにセットされている用紙と、アプリ側の用紙設定が一致している必要があります。プリンタ本体の用紙交換後は、本アプリでも同じ種類が選択されていることを確認してください。</p>
+
+    <p><strong>Q: DK-1201 / DK-2205 以外の用紙は使えますか？</strong></p>
+    <p>現在のバージョンでは上記 2 種類のみ対応しています。ほかの DK ロールへの対応は今後のアップデートで検討します。</p>
+
+    <h3>入力・スキャン</h3>
+
+    <p><strong>Q: QR コードが読み取れません</strong></p>
+    <p>QR コードが鮮明に印刷・表示されていますか（汚れ・反射・折れがないこと）。別画面に表示された QR コードをスキャンする場合は、画面の明るさを上げてください。カメラを 10〜20 cm 程度離して、QR コード全体が枠内に収まるようにしてください。設定アプリ → MediPiro → カメラ が ON になっていることを確認してください。</p>
+
+    <p><strong>Q: スキャンした QR の内容が反映されません</strong></p>
+    <p>QR コードのフォーマットによって反映される項目が異なります。QR が独自フォーマットの場合、本アプリでデコードできない場合があります。手入力での運用をお試しください。</p>
+
+    <p><strong>Q: 文字入力中に漢字変換（IME）が中断される</strong></p>
+    <p>本アプリは IME 合成中の入力検証を意図的に保留する実装になっています。問題が発生する場合はサポートまでご連絡ください。</p>
+
+    <h3>セキュリティ・プライバシー</h3>
+
+    <p><strong>Q: 入力した患者情報はどこに保存されますか？</strong></p>
+    <p>すべて端末内のみに保存されます。外部サーバーへの送信は一切行いません。プリンタへの送信は同一 LAN 内で完結します。</p>
+
+    <p><strong>Q: 印刷履歴を見るのに Face ID が必要なのはなぜですか？</strong></p>
+    <p>患者情報を含む印刷履歴を、端末を共有する他者から保護するためです。「せってい」→「生体認証によるロック」を OFF にすれば認証なしで閲覧できますが、共用環境では ON のままの利用を強く推奨します。</p>
+
+    <p><strong>Q: 履歴を全部削除したい</strong></p>
+    <p>履歴画面の「全消去」ボタン → Face ID / Touch ID 認証で全件削除できます。削除後は復元できません。</p>
+
+    <p><strong>Q: 端末を譲渡・破棄するときは？</strong></p>
+    <p>本アプリをアンインストールするか、端末を「すべてのコンテンツと設定を消去」で初期化してください。</p>
+
+    <h3>その他</h3>
+
+    <p><strong>Q: アプリがクラッシュする</strong></p>
+    <p>iPhone を再起動してから再度お試しください。再現する場合、発生時の操作内容と iOS バージョン・iPhone 機種を添えてサポートまでご連絡ください。</p>
+
+    <p><strong>Q: 医療機器ですか？</strong></p>
+    <p><strong>いいえ</strong>。MediPiro は医療従事者の業務を補助する一般向けアプリであり、医療機器ではありません。診断・治療の用途には使用しないでください。</p>
+
+    <p><strong>Q: Brother 公式アプリとの違いは？</strong></p>
+    <p>MediPiro は患者ラベル印刷ワークフロー（QR スキャン → 患者情報自動入力 → ワンタップ印刷 → 印刷履歴）に特化したアプリです。汎用ラベルデザインは Brother iPrint&amp;Label など公式アプリをご利用ください。</p>
+
+    <h2>お問い合わせ</h2>
+    <p>バグ報告や機能リクエストは <a href="https://github.com/tetsuomassaki/tmcx-apps/issues">GitHub Issues</a> からお願いします。</p>
+
+    <h2>商標・著作権</h2>
+    <ul>
+      <li>Brother、QL-820NWB、QL-720NW、DK-1201、DK-2205 は Brother Industries, Ltd. の商標です</li>
+      <li>iPhone、Face ID、Touch ID、iCloud は Apple Inc. の商標です</li>
+      <li>本アプリは Brother Industries, Ltd. による公認・推奨を受けたものではありません</li>
+      <li>&copy; 2026 tetsuo massaki</li>
+    </ul>
+
+    <hr style="border-color: var(--color-border); margin: 48px 0;">
+
+    <h2>FAQ (English)</h2>
+
+    <p><strong>Q: My printer is not detected.</strong></p>
+    <p>Make sure the printer is powered on and connected to the same Wi-Fi network as your iPhone. Then go to Settings &rarr; MediPiro and ensure Local Network is ON. If discovery still fails, switch to manual IP entry mode in the printer settings screen and enter the printer's IP address directly.</p>
+
+    <p><strong>Q: Printing is slow or times out.</strong></p>
+    <p>Connect the iPhone and the printer to the same access point. Routing across VLANs or different segments is not supported. For bulk jobs, also check that the printer queue is not stuck.</p>
+
+    <p><strong>Q: I cannot scan the QR code.</strong></p>
+    <p>Make sure the QR code is clean and well-lit. Hold the camera 10-20 cm away so the entire QR fits within the frame. Ensure that camera permission is granted in Settings &rarr; MediPiro &rarr; Camera.</p>
+
+    <p><strong>Q: Where is my data stored?</strong></p>
+    <p>All patient data is stored on-device only (Core Data and UserDefaults). No data is transmitted to any external server. Printer communication is direct to the local printer over TCP/9100.</p>
+
+    <p><strong>Q: Why is Face ID required to view print history?</strong></p>
+    <p>Print history contains patient names and IDs and is gated by biometric authentication to protect them when the device is shared. You can disable this gate from Settings, but enabling it is strongly recommended for shared devices.</p>
+
+    <p><strong>Q: How do I clear all print history?</strong></p>
+    <p>From the history screen, tap "Clear all" and authenticate with Face ID / Touch ID. Deletion is permanent.</p>
+
+    <p><strong>Q: Is this a medical device?</strong></p>
+    <p><strong>No.</strong> MediPiro is a label printing utility for medical professionals. It is not a medical device and must not be used for diagnosis or treatment.</p>
+
+    <p><strong>Q: Which printers and labels are supported?</strong></p>
+    <p>Brother QL-820NWB and QL-720NW (and other Brother Print SDK V4.13.0 compatible models). Paper: DK-1201 (29 &times; 90 mm die-cut) and DK-2205 (62 mm continuous).</p>
+
+    <h2>Contact</h2>
+    <p>For bug reports or feature requests, please use <a href="https://github.com/tetsuomassaki/tmcx-apps/issues">GitHub Issues</a>.</p>
+
+    <div class="links">
+      <a href="../../privacy-policy/medipiro/">Privacy Policy / プライバシーポリシー</a>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    <p><a href="../../">&larr; TMCX Apps</a></p>
+  </footer>
+</body>
+</html>
