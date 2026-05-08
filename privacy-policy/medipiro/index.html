@@ -9,7 +9,7 @@
 <body>
   <header class="site-header">
     <h1>MediPiro プライバシーポリシー</h1>
-    <p>最終更新日: 2026年5月7日</p>
+    <p>最終更新日: 2026年5月8日</p>
   </header>
 
   <div class="container prose">
@@ -38,9 +38,9 @@
     <h2>ローカルネットワーク通信について</h2>
     <p>本アプリは、患者ラベルを印刷するために<strong>同一 Wi-Fi ネットワーク上の Brother ラベルプリンタとのみ</strong>通信を行います。</p>
     <ul>
-      <li><strong>検出方式</strong>: Bonjour（mDNS）によるサービス検出（<code>_pdl-datastream._tcp</code> / <code>_printer._tcp</code> / <code>_ipp._tcp</code>）</li>
-      <li><strong>印刷送信</strong>: TCP 9100 ポート（HP JetDirect / Raw 9100 規格）でラベルデータをプリンタへ直接送信</li>
-      <li><strong>送信先</strong>: ユーザーが選択または指定した Brother プリンタの IP アドレスのみ</li>
+      <li><strong>プリンタの指定</strong>: 同一 Wi-Fi 上のプリンタを <strong>IP アドレスで手動指定</strong> します。自動検出（mDNS / Bonjour）機能は使用しません。</li>
+      <li><strong>印刷送信</strong>: TCP 9100 ポート（HP JetDirect / Raw 9100 規格）で、指定された IP アドレスへ直接ラベルデータを送信します。クラウドを経由しないため遅延が発生しません。</li>
+      <li><strong>送信先</strong>: ユーザーが手動で指定した Brother プリンタの IP アドレスのみ</li>
       <li><strong>インターネット送信なし</strong>: 上記通信はすべて LAN 内で完結し、インターネット経由で外部サーバーへ送信されることは一切ありません。</li>
     </ul>
     <p>ローカルネットワーク権限は、上記プリンタ通信のためにのみ使用します。</p>
@@ -94,7 +94,7 @@
 
     <p><strong>Data Stored on Your Device:</strong> Patient input history (name, ID, related notes), print history (timestamp, label content), and app settings (printer IP address, supported printer/paper selection, biometric on/off) are stored in Core Data (SQLite) and UserDefaults. All data is encrypted via iOS Data Protection when the device is locked.</p>
 
-    <p><strong>Local Network Communication:</strong> The App communicates only with a Brother label printer on the same Wi-Fi network in order to print patient labels. Discovery uses Bonjour (mDNS) services (<code>_pdl-datastream._tcp</code>, <code>_printer._tcp</code>, <code>_ipp._tcp</code>); printing sends label data directly to the printer's TCP port 9100 (HP JetDirect / Raw 9100). All communication stays within the local network and is never relayed to an external server.</p>
+    <p><strong>Local Network Communication:</strong> The App communicates only with a Brother label printer on the same Wi-Fi network in order to print patient labels. The user manually enters the IP address of the printer; auto-detection (mDNS / Bonjour) is not used. Label data is sent directly to the specified IP address on TCP port 9100 (HP JetDirect / Raw 9100), without going through any cloud service. All communication stays within the local network and is never relayed to an external server.</p>
 
     <p><strong>Camera Permission:</strong> The App requires camera access solely for scanning QR codes that contain patient information. No images are stored as files; the camera feed is used only for QR code decoding.</p>
 
