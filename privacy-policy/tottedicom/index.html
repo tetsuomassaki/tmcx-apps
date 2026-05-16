@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プライバシーポリシー - TotteDicom</title>
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>TotteDicom プライバシーポリシー</h1>
+    <p>最終更新日: 2026年5月16日</p>
+  </header>
+
+  <div class="container prose">
+
+    <p>本プライバシーポリシーは、TotteDicom（以下「本アプリ」）に適用されます。本アプリは、医療施設内で iPhone カメラから撮影した参照画像を DICOM 形式に変換し、院内 PACS（DICOMweb サーバ）にアップロードするためのファイル変換・転送ツールです。</p>
+
+    <p><strong>本アプリは医療機器ではありません。</strong>診断・診断補助・計測・病変強調・AI 解析の機能は持ちません。撮影画像は参照目的に限定されます。</p>
+
+    <h2>開発元がデータを収集しないこと</h2>
+    <p>本アプリは、撮影された医療画像・患者属性・操作ログを<strong>開発元のサーバーに一切送信しません</strong>。具体的には:</p>
+    <ul>
+      <li><strong>外部サーバーへの送信なし</strong> &mdash; 撮影画像、患者氏名・生年月日・性別・PatientID、監査ログ、端末識別情報を開発元のサーバーへ一切送信しません。</li>
+      <li><strong>アナリティクス・トラッキングなし</strong> &mdash; Firebase / Google Analytics 等のアナリティクス SDK やトラッキングツールは含まれていません。App Tracking Transparency (ATT) 同意ダイアログも表示しません。</li>
+      <li><strong>広告なし</strong> &mdash; 広告の表示や広告主へのデータ共有は行いません。</li>
+      <li><strong>iCloud 同期なし</strong> &mdash; 撮影画像・データベース・設定はすべて <code>isExcludedFromBackup</code> 設定により iCloud バックアップ対象外です。</li>
+      <li><strong>Photos ライブラリ非使用</strong> &mdash; アプリ内カメラ撮影に限定されており、iPhone のカメラロールへの保存もカメラロールからの読み込みも行いません。</li>
+      <li><strong>第三者提供なし</strong> &mdash; いかなる第三者にもデータを提供しません。</li>
+    </ul>
+    <p>App Store Connect の Privacy Label は <strong>「Data Not Collected」</strong> で申告しています。</p>
+
+    <h2>端末に保存されるデータ</h2>
+    <p>以下のデータは、お使いの iPhone 内にのみ保存されます:</p>
+    <ul>
+      <li><strong>撮影された参照画像</strong> &mdash; CryptoKit AES-GCM で暗号化、iOS Data Protection (Complete) で保護。PACS 送信が成功した検査の画像は、次回アプリ起動時のオーファン掃除で削除されます（最長 30 日）。</li>
+      <li><strong>患者属性</strong>（PatientID、氏名カナ、生年月日、性別） &mdash; QR コードまたは手入力で取得した値を、暗号化された SQLite (GRDB) に保存。検査ごとに保管され、PACS 送信完了後に画像と同じタイミングで削除されます。</li>
+      <li><strong>監査ログ</strong> &mdash; 操作履歴をハッシュチェーンで連結し、AES-GCM で暗号化して保管（既定 90 日、施設設定で変更可）。PatientID は HMAC-SHA256 でハッシュ化して記録され、平文では残りません。</li>
+      <li><strong>認証トークン</strong> &mdash; PACS への Basic / Bearer / mTLS 認証情報を Keychain (<code>kSecAttrAccessibleWhenUnlockedThisDeviceOnly</code>) に保存。</li>
+      <li><strong>アプリ設定</strong>（PACS 接続先、自動ログオフ時間、施設名・撮影者名等） &mdash; UserDefaults および Keychain に保存。</li>
+    </ul>
+
+    <h2>通信先について</h2>
+    <p>本アプリは以下の通信を行います。すべて<strong>施設管理者が設定</strong>するものであり、開発元は経由しません。</p>
+    <ul>
+      <li><strong>院内 PACS サーバ</strong>: DICOMweb (STOW-RS) で参照画像をアップロード。TLS 1.3 + 公開鍵 SHA-256 ピンニング、必要に応じて mTLS クライアント証明書認証を併用。</li>
+      <li><strong>院内認証サーバ (IdP)</strong>: OAuth2 / OIDC による認証要求（オプション、Phase 1 では Basic 認証のみ UI 表示）。TLS 1.3。</li>
+      <li><strong>院内 SIEM</strong>: 監査ログの転送（オプション）。HTTPS over TLS 1.3。</li>
+    </ul>
+    <p>これら通信先はすべて施設の責任において設定・運用されるものであり、開発元のサーバを経由するものはありません。</p>
+
+    <h2>ローカルネットワーク権限について</h2>
+    <p>本アプリは iOS のローカルネットワーク権限（<code>NSLocalNetworkUsageDescription</code>）を要求します。これは院内 PACS（同一 Wi-Fi または VPN 上のプライベート IP アドレス）への DICOMweb 通信のためにのみ使用されます。Bonjour による自動検出も併用しますが、これは Apple が定める権限ダイアログを正しく発火させるための確証パターンであり、検出結果を保存・送信することはありません。</p>
+
+    <h2>カメラ権限について</h2>
+    <p>本アプリはカメラ権限（<code>NSCameraUsageDescription</code>）を要求します。カメラは<strong>参照画像の撮影および QR コード読み取り</strong>にのみ使用されます。撮影画像は前述の暗号化ストレージに保管され、iPhone のカメラロールには一切保存されません。</p>
+
+    <h2>Face ID / Touch ID について</h2>
+    <p>本アプリは Face ID / Touch ID（<code>NSFaceIDUsageDescription</code>）を要求します。これは<strong>ログイン画面での認証セッション解錠のみ</strong>に使用されます。生体認証データ（顔・指紋）は iOS のセキュアエンクレーブ内でのみ処理され、本アプリが生体認証データそのものにアクセスすることはありません。アプリは認証の成否のみを受け取ります。</p>
+
+    <h2>セキュリティ対策</h2>
+    <ul>
+      <li>TLS 1.3 + 公開鍵 SHA-256 ピンニングを必須化（HTTP 接続は検証用サンドボックスでのみ許可）</li>
+      <li>端末ローカルストレージは CryptoKit AES-GCM で暗号化</li>
+      <li>Keychain はデバイスアンロック時のみアクセス可（<code>kSecAttrAccessibleWhenUnlockedThisDeviceOnly</code>）</li>
+      <li>自動ログオフ（既定 5 分、1〜30 分の 8 択で設定変更可）</li>
+      <li>スクリーンショット検知・画面録画検知・バックグラウンド時のプライバシーオーバーレイ</li>
+      <li>監査ログのハッシュチェーンによる改ざん検知</li>
+    </ul>
+
+    <h2>個人情報の取り扱いに関する利用者への注意</h2>
+    <p>本アプリは患者属性および参照画像を端末内に一時保管する性質上、以下の点にご留意ください:</p>
+    <ul>
+      <li>端末を共用する場合は、端末のパスコードロックおよび本アプリの自動ログオフ（既定 5 分）を必ず有効にしてください。</li>
+      <li>失敗送信は履歴画面の「再送する」で速やかに完了させ、端末内に残らないようにしてください。</li>
+      <li>端末を破棄・譲渡する際は、必ず本アプリをアンインストールするか、端末を初期化してください。</li>
+      <li>端末紛失時は施設の IT 部門へ即時連絡し、MDM によるリモートワイプを実施してください。</li>
+    </ul>
+
+    <h2>医療データに関する免責事項</h2>
+    <p>本アプリは医療機器ではなく、診断・治療等の医療行為を行うものではありません。本アプリはあくまで参照画像の DICOM 変換および院内 PACS への送信を支援するツールであり、本アプリで撮影された画像を診断・治療判断に用いることはできません。診断には CT / MR / DR 等の正規の医療機器画像をご利用ください。</p>
+
+    <h2>PrivacyInfo.xcprivacy（必要 API 申告）</h2>
+    <p>本アプリは Apple が要求する <code>PrivacyInfo.xcprivacy</code> を同梱しています。</p>
+    <ul>
+      <li><strong>NSPrivacyAccessedAPICategoryFileTimestamp</strong>（理由 <code>C617.1</code>）&mdash; 暗号化ストレージ管理のため</li>
+      <li><strong>NSPrivacyAccessedAPICategoryUserDefaults</strong>（理由 <code>CA92.1</code>）&mdash; アプリ設定保存のため</li>
+      <li><strong>NSPrivacyAccessedAPICategoryDiskSpace</strong>（理由 <code>E174.1</code>）&mdash; キャッシュ管理のため</li>
+      <li><strong>NSPrivacyAccessedAPICategorySystemBootTime</strong>（理由 <code>35F9.1</code>）&mdash; セッション管理のため</li>
+    </ul>
+    <p>Tracking および Tracking Domains は空です。</p>
+
+    <h2>クラッシュレポート</h2>
+    <p>App Store Connect 経由のクラッシュレポートは Apple が標準で収集します。本アプリは PatientID・画像データ・認証トークン等の個人を特定できる情報をクラッシュレポートに含めないよう設計されています。</p>
+
+    <h2>利用者の権利</h2>
+    <p>本アプリの利用者（医療従事者）は、所属施設の医療情報安全管理責任者を通じて以下の権利を行使できます:</p>
+    <ul>
+      <li>監査ログの開示請求</li>
+      <li>PACS に送信済の画像の確認</li>
+      <li>アカウントの利用停止</li>
+    </ul>
+    <p>開発元は利用者個人の情報を保有しないため、開発元に対する開示請求は受け付けません。</p>
+
+    <h2>個人情報保護法上の事業者該当性</h2>
+    <p>本アプリの提供により開発元が個人情報を取扱うことはないため、開発元は本アプリに関して「個人情報取扱事業者」に該当しません。施設は施設としての個人情報保護法上の義務を負います。</p>
+
+    <h2>お子様のプライバシー</h2>
+    <p>本アプリは医療従事者向けの業務支援アプリであり、13 歳未満のお子様の利用は想定していません。本アプリは個人情報を外部に送信することはありません。</p>
+
+    <h2>ポリシーの変更</h2>
+    <p>本プライバシーポリシーは随時更新される場合があります。変更があった場合は、このページに更新日とともに掲載します。</p>
+
+    <h2>商標について</h2>
+    <p>iPhone、Face ID、Touch ID、iCloud、CryptoKit は Apple Inc. の商標です。DICOM は NEMA の登録商標です。本アプリは Apple Inc.、NEMA、各 PACS ベンダーによる公認・推奨を受けたものではありません。</p>
+
+    <h2>お問い合わせ</h2>
+    <p>本プライバシーポリシーに関するご質問は、<a href="../../tottedicom/support/">サポートページ</a>、または <a href="https://github.com/tetsuomassaki/tmcx-apps/issues">GitHub Issues</a> からお問い合わせください。導入施設の医療従事者の方は、所属施設のシステム管理者経由でご連絡ください。</p>
+
+    <hr style="border-color: var(--color-border); margin: 48px 0;">
+
+    <h2>Privacy Policy (English)</h2>
+
+    <p>This privacy policy applies to TotteDicom ("the App"), an iOS app that converts iPhone-camera reference images into DICOM format and uploads them to in-hospital PACS (DICOMweb servers).</p>
+
+    <p><strong>The App is NOT a medical device.</strong> It does not provide diagnosis, diagnostic support, measurement, lesion enhancement, or AI analysis. Captured images are strictly for reference use.</p>
+
+    <p><strong>No Data Collected by the Developer:</strong> The App does not transmit any data to the developer's servers. Specifically:</p>
+    <ul>
+      <li><strong>No external server transmission</strong> &mdash; Captured images, patient attributes (name, date of birth, sex, PatientID), audit logs, and device identifiers are never sent to the developer's servers.</li>
+      <li><strong>No analytics or tracking</strong> &mdash; No analytics SDKs (Firebase, Google Analytics, etc.) or tracking tools are included. The App Tracking Transparency (ATT) consent dialog is never shown.</li>
+      <li><strong>No advertising</strong> &mdash; No ads are shown and no data is shared with advertisers.</li>
+      <li><strong>No iCloud sync</strong> &mdash; All images, database, and settings are marked <code>isExcludedFromBackup</code> and are not backed up to iCloud.</li>
+      <li><strong>No Photos library use</strong> &mdash; In-app camera capture only. The app never reads from or writes to the iPhone's camera roll.</li>
+      <li><strong>No third-party data sharing</strong> &mdash; Data is never provided to any third party.</li>
+    </ul>
+    <p>The App Store Connect Privacy Label is filed as <strong>"Data Not Collected"</strong>.</p>
+
+    <p><strong>Data Stored on Your Device:</strong> Captured reference images (encrypted with CryptoKit AES-GCM and iOS Data Protection Complete), patient attributes from QR / manual input (in encrypted SQLite via GRDB), audit logs (hash-chained and AES-GCM encrypted, default 90-day retention), authentication tokens (Keychain, <code>kSecAttrAccessibleWhenUnlockedThisDeviceOnly</code>), and app settings (UserDefaults and Keychain). PatientIDs in audit logs are HMAC-SHA256 hashed and never stored as plaintext.</p>
+
+    <p><strong>Communication Endpoints:</strong> The App communicates with in-hospital PACS (DICOMweb STOW-RS over TLS 1.3 with public-key SHA-256 pinning, optionally mTLS), in-hospital IdP for OAuth2 / OIDC (optional, Phase 1 UI exposes Basic auth only), and in-hospital SIEM for audit log transfer (optional, HTTPS over TLS 1.3). All endpoints are configured by the facility's administrator and never route through the developer.</p>
+
+    <p><strong>Local Network Permission:</strong> The App requires the iOS local network permission (<code>NSLocalNetworkUsageDescription</code>) for DICOMweb communication with private-IP PACS hosts. Bonjour-based confirmation is used to correctly trigger the system permission dialog (per Apple TN3179); detected services are never stored or transmitted.</p>
+
+    <p><strong>Camera Permission:</strong> The App requires camera access (<code>NSCameraUsageDescription</code>) solely for capturing reference images and reading QR codes. Captured images are stored in the encrypted local storage described above; nothing is saved to the iPhone's camera roll.</p>
+
+    <p><strong>Face ID / Touch ID:</strong> Used solely to unlock the authentication session on the login screen. Biometric data is processed within iOS's Secure Enclave; the App only receives the authentication result.</p>
+
+    <p><strong>Security Measures:</strong> TLS 1.3 + public-key SHA-256 pinning (HTTP is allowed only for validation sandboxes); CryptoKit AES-GCM for local storage; Keychain unlocked-only access; auto sign-out (default 5 min, 1–30 min in 8 choices); screenshot / screen-recording detection; background privacy overlay; tamper-evident hash-chained audit log.</p>
+
+    <p><strong>User Responsibilities:</strong> Always enable the device passcode and the App's auto sign-out (default 5 min) when the device is shared. Resend failed uploads promptly from History so they do not linger on the device. When disposing of or transferring the device, uninstall the App or factory-reset the device. Notify the facility's IT department immediately upon device loss for MDM remote wipe.</p>
+
+    <p><strong>Medical Disclaimer:</strong> The App is not a medical device and does not perform medical acts (diagnosis, treatment, etc.). It is a utility for converting reference images to DICOM and uploading them to in-hospital PACS. Captured images must never be used for diagnosis or treatment decisions. Use regulated modality images (CT / MR / DR, etc.) for diagnostic purposes.</p>
+
+    <p><strong>PrivacyInfo.xcprivacy:</strong> The App bundles a Privacy Manifest declaring required reasons for the following APIs: FileTimestamp (<code>C617.1</code>, encrypted storage management), UserDefaults (<code>CA92.1</code>, settings persistence), DiskSpace (<code>E174.1</code>, cache management), SystemBootTime (<code>35F9.1</code>, session management). Tracking and Tracking Domains are empty.</p>
+
+    <p><strong>Crash Reports:</strong> Crash reports collected via App Store Connect are gathered by Apple by default. The App is designed never to include PatientIDs, image data, authentication tokens, or other personally identifying information in crash reports.</p>
+
+    <p><strong>User Rights:</strong> App users (medical professionals) may exercise the following rights through their facility's medical information security manager: audit log disclosure, confirmation of images uploaded to PACS, and account deactivation. The developer does not retain individual user data and does not accept disclosure requests directly.</p>
+
+    <p><strong>Children's Privacy:</strong> The App is intended for medical professionals and is not directed at children under 13. The App does not transmit any personal information externally.</p>
+
+    <p><strong>Policy Changes:</strong> This privacy policy may be updated. Any changes will be posted on this page with a revised date.</p>
+
+    <p><strong>Trademarks:</strong> "iPhone", "Face ID", "Touch ID", "iCloud", and "CryptoKit" are trademarks of Apple Inc. "DICOM" is a registered trademark of NEMA. The App is not endorsed by or affiliated with Apple Inc., NEMA, or any PACS vendor.</p>
+
+    <p><strong>Contact:</strong> Questions? Please visit our <a href="../../tottedicom/support/">support page</a> or open an issue on <a href="https://github.com/tetsuomassaki/tmcx-apps/issues">GitHub</a>. If you are a medical professional using TotteDicom at a hospital, please contact your facility's system administrator.</p>
+
+  </div>
+
+  <footer class="site-footer">
+    <p>TotteDicom is not a medical device. / TotteDicom は医療機器ではありません。</p>
+    <p style="margin-top: 8px;"><a href="../../tottedicom/">TotteDicom</a> &nbsp;|&nbsp; <a href="../../">&larr; TMCX Apps</a></p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!--
+  TotteDicom Support Page
+  - 想定公開先: https://tetsuomassaki.github.io/tmcx-apps/tottedicom/support/
+  - 配置方法: 本ファイルを `tmcx-apps/tottedicom/support/index.html` にコピー
+  - スタイル: tmcx-apps 共通 style.css（相対パス ../../style.css）を参照
+  - 本ファイルはリポジトリ内（TotteDicom/AppStore/サポートページ/）にも保管され、
+    App Store 申請メタデータの一部として管理される（tasks/04 T3-04）
+-->
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TotteDicom - サポート / Support</title>
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>TotteDicom サポート</h1>
+    <p>iPhone カメラから DICOM、院内 PACS へ。導入・運用に関するご質問にお答えします。</p>
+  </header>
+
+  <div class="container prose">
+
+    <h2>このアプリについて（重要）</h2>
+    <p><strong>TotteDicom は医療機器ではありません。</strong>診断・診断補助・計測・病変強調・AI 解析の機能は一切持ちません。撮影画像は<strong>参照目的に限定</strong>され、診断・治療判断は CT / MR / DR 等の正規の医療機器画像で行ってください。</p>
+    <p>本アプリは、iPhone で撮影した参照画像を DICOM 形式に変換し、院内 PACS に登録するためのファイル変換・転送ツールです。皮膚科・形成外科の創傷経過観察、在宅医療の訪問記録、看護記録の画像エビデンス等の用途を想定しています。</p>
+
+    <h2>よくある質問</h2>
+
+    <p><strong>Q. TotteDicom は診断に使えますか？</strong></p>
+    <p>使えません。本アプリは<strong>医療機器プログラムに該当しない</strong>ファイル変換ツールです。撮影中・確認画面・送信ボタン直上など、撮影フローの随所に「参照画像専用：診断には使用できません」の警告表示が常時出ます（画像本体への文字焼込みは行いません — DICOM <code>(0028,0301) BurnedInAnnotation = NO</code>）。診断には CT / MR / DR 等の医療機器画像をご利用ください。</p>
+
+    <p><strong>Q. 撮影した画像はどこに保管されますか？</strong></p>
+    <p>iPhone 内の暗号化領域（CryptoKit AES-GCM）に保管されます。PACS 送信が成功した検査の画像ファイルは、<strong>次回アプリ起動時のオーファン掃除（<code>EncryptedFileStore.purgeOrphans</code>）で削除</strong>されます。Photos アプリ、iCloud、開発元のサーバには一切保存されません。</p>
+
+    <p><strong>Q. PACS への送信が失敗します</strong></p>
+    <p>以下を順にご確認ください。</p>
+    <ul>
+      <li>Wi-Fi または LTE が接続されているか</li>
+      <li>履歴画面で失敗した検査の「再送する」をタップ</li>
+      <li>設定画面 → 接続テストで PACS への到達性を確認</li>
+      <li>サーバ証明書の更新（ピンニング失敗時）について施設管理者に確認</li>
+    </ul>
+    <p>解消しない場合、エラーメッセージのスクリーンショットを添えて施設の管理者またはサポート窓口へご連絡ください。</p>
+
+    <p><strong>Q. ログインできません</strong></p>
+    <p>パスワードの再設定は施設のシステム管理者へ依頼してください。Face ID が機能しない場合は ID + パスワードで直接ログインできます。自動ログオフは<strong>既定 5 分</strong>（設定画面で 1 / 3 / 5 / 10 / 15 / 20 / 25 / 30 分の 8 択から選択可）で動作するため、再ログインが必要なことがあります。</p>
+
+    <p><strong>Q. スクリーンショットを撮るとどうなりますか？</strong></p>
+    <p>警告ダイアログが表示され、<strong>監査ログに記録</strong>されます。画面録画中は画面が黒く隠されます。業務上の必要がない限り撮影しないでください。</p>
+
+    <p><strong>Q. 端末を紛失した場合は？</strong></p>
+    <p>即時に施設の IT 部門へご連絡ください。MDM によるリモートワイプを実施します。端末内画像は CryptoKit AES-GCM で暗号化されており、Data Protection は Complete に設定されています。</p>
+
+    <p><strong>Q. オフライン環境では使えますか？</strong></p>
+    <p>撮影は可能です（端末内に暗号化保管）。院内ネットワークに復帰した後、<strong>ホーム → 履歴 → 該当検査の「再送する」ボタン</strong>で手動再送してください。訪問医療等で WiFi のない環境にも対応しています（v1.2 以降は負荷集中回避のため、起動時の自動再送を一時無効化し、利用者の能動操作で再送する運用に統一）。</p>
+
+    <p><strong>Q. iPhone のカメラロールから過去の写真を送れますか？</strong></p>
+    <p>送れません。<strong>アプリ内のカメラ撮影に限定</strong>されています（DICOM 互換性および個人情報混入リスクを避けるため）。</p>
+
+    <h2>障害連絡時の情報</h2>
+    <p>障害連絡の際には、以下の情報を可能な範囲でお伝えいただくと迅速に対応できます。</p>
+    <ul>
+      <li>施設名・ご連絡者・連絡先</li>
+      <li>発生日時（YYYY-MM-DD HH:MM）</li>
+      <li>症状の概要</li>
+      <li>再現手順（可能であれば）</li>
+      <li>業務影響（撮影中の人数・滞留検査数等）</li>
+      <li>エラーメッセージ・スクリーンショット（撮影できる場合）</li>
+    </ul>
+
+    <h2>SLA 概要</h2>
+    <p>緊急度に応じた一次応答・復旧目標を設定しています。詳細は施設導入時の SLA 契約書をご確認ください。</p>
+    <ul>
+      <li><strong>P1（業務全停止／重大セキュリティ）</strong>：一次応答 30 分以内、復旧目標 4 時間以内</li>
+      <li><strong>P2（主要機能停止、回避策あり）</strong>：一次応答 2 時間以内、復旧目標 1 営業日以内</li>
+      <li><strong>P3（軽微）</strong>：一次応答 1 営業日以内、復旧目標 1 週間以内</li>
+    </ul>
+
+    <h2>お問い合わせ</h2>
+    <p>導入相談・障害連絡・機能要望は施設のシステム管理者を通してご連絡ください。サポート窓口の連絡先は施設導入時に正式にご案内します。</p>
+
+    <hr style="border-color: var(--color-border); margin: 48px 0;">
+
+    <h2>About This App (English)</h2>
+    <p><strong>TotteDicom is NOT a medical device.</strong> The app does not provide diagnosis, diagnostic support, measurement, lesion enhancement, or AI analysis. Captured images are <strong>strictly for reference</strong> and must not be used for diagnosis. Diagnosis must be performed using regulated modality images (CT / MR / DR, etc.).</p>
+    <p>TotteDicom converts iPhone camera images to DICOM format and uploads them to in-hospital PACS via DICOMweb (STOW-RS). It is intended for use cases such as wound documentation in dermatology / plastic surgery, home-care visit records, and nursing image evidence.</p>
+
+    <h2>FAQ (English)</h2>
+
+    <p><strong>Q. Can I use TotteDicom for diagnosis?</strong></p>
+    <p>No. This app is a <strong>file conversion tool that is not classified as a medical device program</strong>. The capture, review, and send screens all show a persistent on-screen warning "Reference image only — Not for diagnosis." (No text is burned into the image itself — DICOM <code>(0028,0301) BurnedInAnnotation = NO</code>.)</p>
+
+    <p><strong>Q. Where are the captured images stored?</strong></p>
+    <p>Locally on iPhone in an encrypted volume (CryptoKit AES-GCM). Images of successfully uploaded studies are <strong>removed by the orphan-purge routine on the next app launch</strong> (<code>EncryptedFileStore.purgeOrphans</code>). They are never sent to Photos, iCloud, or the developer's servers.</p>
+
+    <p><strong>Q. PACS upload is failing</strong></p>
+    <p>Please check Wi-Fi/LTE connectivity, tap "Resend" in History, and run the connection test in Settings. If unresolved, contact your facility administrator with a screenshot of the error message.</p>
+
+    <p><strong>Q. I can't log in</strong></p>
+    <p>Ask your facility's system administrator for password reset. Direct ID + password login is available when Face ID does not work. The app auto-locks after <strong>5 minutes of inactivity by default</strong> (configurable from 1, 3, 5, 10, 15, 20, 25, or 30 minutes in Settings).</p>
+
+    <p><strong>Q. What happens if I take a screenshot?</strong></p>
+    <p>A warning dialog appears and the event is <strong>recorded in the audit log</strong>. During screen recording, the app's screen is masked. Please refrain from screenshots unless required for business purposes.</p>
+
+    <p><strong>Q. What if I lose the device?</strong></p>
+    <p>Notify your IT department immediately. They will perform remote wipe via MDM. Local images are encrypted with CryptoKit AES-GCM and protected by iOS Data Protection (Complete).</p>
+
+    <p><strong>Q. Can I use the app offline?</strong></p>
+    <p>Yes for capture (images are stored encrypted on device). After connectivity returns, please retry uploads <strong>manually</strong> via Home → History → the relevant study → "Resend". Startup auto-resend has been temporarily disabled since v1.2 (to avoid synchronized load spikes on PACS) and is scheduled to be re-enabled in a future release.</p>
+
+    <p><strong>Q. Can I send photos from the iPhone camera roll?</strong></p>
+    <p>No. Only images captured within the app can be sent (to ensure DICOM compatibility and prevent accidental inclusion of personal information).</p>
+
+    <h2>SLA Summary</h2>
+    <ul>
+      <li><strong>P1 (full outage / critical security)</strong>: First response within 30 min, recovery target 4 h</li>
+      <li><strong>P2 (major feature down, workaround available)</strong>: First response within 2 h, recovery target 1 business day</li>
+      <li><strong>P3 (minor)</strong>: First response within 1 business day, recovery target 1 week</li>
+    </ul>
+
+    <h2>Contact</h2>
+    <p>For deployment inquiries, incident reports, or feature requests, please contact your facility's system administrator. The official support channel is provided at deployment time.</p>
+
+    <div class="links">
+      <a href="../">TotteDicom</a>
+      <a href="../../privacy-policy/">Privacy Policy / プライバシーポリシー</a>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    <p>TotteDicom is not a medical device. / TotteDicom は医療機器ではありません。</p>
+    <p style="margin-top:8px;"><a href="../../">&larr; TMCX Apps</a></p>
+  </footer>
+</body>
+</html>
