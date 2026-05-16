@@ -41,13 +41,11 @@
     </ul>
 
     <h2>通信先について</h2>
-    <p>本アプリは以下の通信を行います。すべて<strong>施設管理者が設定</strong>するものであり、開発元は経由しません。</p>
+    <p>本アプリは以下の通信を行います。通信先は<strong>施設管理者が設定</strong>するものであり、開発元は経由しません。</p>
     <ul>
-      <li><strong>院内 PACS サーバ</strong>: DICOMweb (STOW-RS) で参照画像をアップロード。TLS 1.3 + 公開鍵 SHA-256 ピンニング、必要に応じて mTLS クライアント証明書認証を併用。</li>
-      <li><strong>院内認証サーバ (IdP)</strong>: OAuth2 / OIDC による認証要求（オプション、Phase 1 では Basic 認証のみ UI 表示）。TLS 1.3。</li>
-      <li><strong>院内 SIEM</strong>: 監査ログの転送（オプション）。HTTPS over TLS 1.3。</li>
+      <li><strong>院内 PACS サーバ</strong>: DICOMweb (STOW-RS) で参照画像をアップロード。現バージョンでは同一 LAN 上の HTTP Basic 認証エンドポイントのみ UI でサポートしています（TLS 1.3 + 公開鍵 SHA-256 ピンニング、mTLS クライアント証明書認証は実装済みで、将来のリリースで UI から再有効化される予定です）。</li>
     </ul>
-    <p>これら通信先はすべて施設の責任において設定・運用されるものであり、開発元のサーバを経由するものはありません。</p>
+    <p>通信先は施設の責任において設定・運用されるものであり、開発元のサーバを経由するものはありません。</p>
 
     <h2>ローカルネットワーク権限について</h2>
     <p>本アプリは iOS のローカルネットワーク権限（<code>NSLocalNetworkUsageDescription</code>）を要求します。これは院内 PACS（同一 Wi-Fi または VPN 上のプライベート IP アドレス）への DICOMweb 通信のためにのみ使用されます。Bonjour による自動検出も併用しますが、これは Apple が定める権限ダイアログを正しく発火させるための確証パターンであり、検出結果を保存・送信することはありません。</p>
@@ -138,7 +136,7 @@
 
     <p><strong>Data Stored on Your Device:</strong> Captured reference images (encrypted with CryptoKit AES-GCM and iOS Data Protection Complete), patient attributes from QR / manual input (in encrypted SQLite via GRDB), audit logs (hash-chained and AES-GCM encrypted, default 90-day retention), authentication tokens (Keychain, <code>kSecAttrAccessibleWhenUnlockedThisDeviceOnly</code>), and app settings (UserDefaults and Keychain). PatientIDs in audit logs are HMAC-SHA256 hashed and never stored as plaintext.</p>
 
-    <p><strong>Communication Endpoints:</strong> The App communicates with in-hospital PACS (DICOMweb STOW-RS over TLS 1.3 with public-key SHA-256 pinning, optionally mTLS), in-hospital IdP for OAuth2 / OIDC (optional, Phase 1 UI exposes Basic auth only), and in-hospital SIEM for audit log transfer (optional, HTTPS over TLS 1.3). All endpoints are configured by the facility's administrator and never route through the developer.</p>
+    <p><strong>Communication Endpoints:</strong> The App communicates with the in-hospital PACS server via DICOMweb (STOW-RS). The current release exposes only HTTP Basic authentication endpoints on the same LAN through the UI; TLS 1.3 with public-key SHA-256 pinning and mTLS client-certificate authentication are implemented in code and scheduled to be re-exposed in the UI in a future release. The endpoint is configured by the facility's administrator and never routes through the developer.</p>
 
     <p><strong>Local Network Permission:</strong> The App requires the iOS local network permission (<code>NSLocalNetworkUsageDescription</code>) for DICOMweb communication with private-IP PACS hosts. Bonjour-based confirmation is used to correctly trigger the system permission dialog (per Apple TN3179); detected services are never stored or transmitted.</p>
 
