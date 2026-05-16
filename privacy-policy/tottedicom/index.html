@@ -54,11 +54,16 @@
     <p>本アプリはカメラ権限（<code>NSCameraUsageDescription</code>）を要求します。カメラは<strong>参照画像の撮影および QR コード読み取り</strong>にのみ使用されます。撮影画像は前述の暗号化ストレージに保管され、iPhone のカメラロールには一切保存されません。</p>
 
     <h2>Face ID / Touch ID について</h2>
-    <p>本アプリは Face ID / Touch ID（<code>NSFaceIDUsageDescription</code>）を要求します。これは<strong>ログイン画面での認証セッション解錠のみ</strong>に使用されます。生体認証データ（顔・指紋）は iOS のセキュアエンクレーブ内でのみ処理され、本アプリが生体認証データそのものにアクセスすることはありません。アプリは認証の成否のみを受け取ります。</p>
+    <p>本アプリは Face ID / Touch ID（<code>NSFaceIDUsageDescription</code>）を要求します。これは以下の場面でのみ使用されます。</p>
+    <ul>
+      <li><strong>ログイン画面での認証セッション解錠</strong>（手動「Face ID で開く」ボタン、または自動ログオフ後の復帰時の自動プロンプト）</li>
+      <li><strong>緊急サーバ設定モードへの入場</strong>（連続ネットワーク失敗時に PACS プロファイルのみ編集できるモード）</li>
+    </ul>
+    <p>設定画面の入場や暗号鍵（DEK）アクセスには Face ID を使用しません。生体認証データ（顔・指紋）は iOS のセキュアエンクレーブ内でのみ処理され、本アプリが生体認証データそのものにアクセスすることはありません。アプリは認証の成否のみを受け取ります。</p>
 
     <h2>セキュリティ対策</h2>
     <ul>
-      <li>TLS 1.3 + 公開鍵 SHA-256 ピンニングを必須化（HTTP 接続は検証用サンドボックスでのみ許可）</li>
+      <li>現バージョンは UI で<strong>同一 LAN 上の HTTP Basic 認証エンドポイント</strong>のみサポート（TLS 1.3 + 公開鍵 SHA-256 ピンニング、Bearer (OIDC)、mTLS クライアント証明書認証は実装済みで、将来のリリースで UI から再有効化される予定）</li>
       <li>端末ローカルストレージは CryptoKit AES-GCM で暗号化</li>
       <li>Keychain はデバイスアンロック時のみアクセス可（<code>kSecAttrAccessibleWhenUnlockedThisDeviceOnly</code>）</li>
       <li>自動ログオフ（既定 5 分、1〜30 分の 8 択で設定変更可）</li>
@@ -142,9 +147,9 @@
 
     <p><strong>Camera Permission:</strong> The App requires camera access (<code>NSCameraUsageDescription</code>) solely for capturing reference images and reading QR codes. Captured images are stored in the encrypted local storage described above; nothing is saved to the iPhone's camera roll.</p>
 
-    <p><strong>Face ID / Touch ID:</strong> Used solely to unlock the authentication session on the login screen. Biometric data is processed within iOS's Secure Enclave; the App only receives the authentication result.</p>
+    <p><strong>Face ID / Touch ID:</strong> Used in two scenarios only — (1) unlocking the authentication session on the login screen (via the "Open with Face ID" button or the auto-prompt after returning from auto sign-out), and (2) entering the Emergency PACS Reconfiguration mode that lets the user edit only the PACS profile after consecutive network failures. Face ID is not used for entering the Settings screen or for accessing the data encryption key (DEK). Biometric data is processed within iOS's Secure Enclave; the App only receives the authentication result.</p>
 
-    <p><strong>Security Measures:</strong> TLS 1.3 + public-key SHA-256 pinning (HTTP is allowed only for validation sandboxes); CryptoKit AES-GCM for local storage; Keychain unlocked-only access; auto sign-out (default 5 min, 1–30 min in 8 choices); screenshot / screen-recording detection; background privacy overlay; tamper-evident hash-chained audit log.</p>
+    <p><strong>Security Measures:</strong> The current release exposes only HTTP Basic authentication endpoints on the same LAN through the UI; TLS 1.3 + public-key SHA-256 pinning, Bearer (OIDC), and mTLS client-certificate authentication are implemented in code and scheduled to be re-exposed in the UI in a future release. Other measures: CryptoKit AES-GCM for local storage; Keychain unlocked-only access; auto sign-out (default 5 min, 1–30 min in 8 choices); screenshot / screen-recording detection; background privacy overlay; tamper-evident hash-chained audit log.</p>
 
     <p><strong>User Responsibilities:</strong> Always enable the device passcode and the App's auto sign-out (default 5 min) when the device is shared. Resend failed uploads promptly from History so they do not linger on the device. When disposing of or transferring the device, uninstall the App or factory-reset the device. Notify the facility's IT department immediately upon device loss for MDM remote wipe.</p>
 
