@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShashinSendPro - サポート / Support</title>
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>ShashinSendPro サポート</h1>
+    <p>お困りのことがあればお気軽にお問い合わせください</p>
+  </header>
+
+  <div class="container prose">
+
+    <h2>アプリ概要</h2>
+    <p>ShashinSendPro は、タブレットの内蔵カメラまたは外部カメラ（HDMI キャプチャボード）で撮影した写真を、LAN 上の WebDAV サーバーへ転送する業務用カメラアプリです。連写運用に最適化し、撮影と転送を分離することでシャッターのレスポンスを高めています。</p>
+    <ul>
+      <li><strong>対応 OS</strong>: タブレット用OS 17.0 以上</li>
+      <li><strong>対応デバイス</strong>: タブレット専用</li>
+      <li><strong>転送先</strong>: ユーザーが用意した WebDAV サーバー</li>
+      <li><strong>外部カメラ</strong>: USB-C 接続の HDMI キャプチャボード（任意）</li>
+      <li><strong>データ保存</strong>: 画像は端末内（外部ストレージ）に保存。送信先はユーザー指定の WebDAV サーバーのみ。開発元サーバーへの送信なし</li>
+    </ul>
+
+    <h2>はじめに（セットアップ）</h2>
+    <ol>
+      <li>設定タブを開き、<strong>端末 ID</strong>（英数字1〜5桁）を入力します。ファイル名の先頭に付与され、どの端末から送ったか分かります。</li>
+      <li><strong>WebDAV 接続</strong>に、サーバー URL・ユーザー名・パスワード・アップロードフォルダを入力します。</li>
+      <li><strong>接続テスト</strong>で設定を確認します（緑で「接続成功」）。</li>
+      <li>撮影タブで撮影 ID を入力し、シャッターを押すと撮影・転送されます。</li>
+    </ol>
+    <p>WebDAV サーバーをお持ちでない場合は、設定の<strong>デモモード</strong>を ON にすると、実際の送信を行わずに「撮影 → 履歴記録」の流れを確認できます。</p>
+
+    <h2>よくある質問</h2>
+
+    <h3>カメラ</h3>
+
+    <p><strong>Q: 内蔵カメラと外部カメラはどう違いますか？</strong></p>
+    <p>内蔵カメラは端末の向きに追従して正立で保存します。外部カメラ（HDMI キャプチャボード）は入力ソースの解像度・縦横比をそのまま取り込みます。設定のカメラソースで切り替えられます。撮影後の保存・転送・履歴の処理はどちらも同一です。</p>
+
+    <p><strong>Q: 「外部カメラが見つかりません」と表示されます</strong></p>
+    <p>USB-C 接続の HDMI キャプチャボードが正しく接続されているか確認してください。外部カメラは任意の周辺機器で、接続が無くても内蔵カメラで全機能をご利用いただけます。</p>
+
+    <p><strong>Q: 連写するとシャッターが固まりますか？</strong></p>
+    <p>撮影と転送を分離しているため、転送の完了を待たずに次の撮影を受け付けます。連写してもテンポは落ちません。</p>
+
+    <h3>転送・ネットワーク</h3>
+
+    <p><strong>Q: WebDAV サーバーの設定方法は？</strong></p>
+    <p>設定タブの「WebDAV 接続」に、サーバー URL・ユーザー名・パスワード・アップロードフォルダを入力し、「接続テスト」で確認してください。院内 LAN などローカル IP の <code>http://</code> サーバーにも接続できます（平文接続のため、アプリ内で注意を表示します。可能であれば <code>https://</code> を推奨）。</p>
+
+    <p><strong>Q: 送信に失敗した写真はどうなりますか？</strong></p>
+    <p>失敗・未送信の記録は端末内に保持され、カメラ画面に「未送信◯件」バッジが表示されます。ネットワーク復帰時に自動で再送されます。履歴画面から手動で再送・削除することもできます。</p>
+
+    <p><strong>Q: ファイル名の形式は？</strong></p>
+    <p><code>端末ID_撮影ID_日時(ミリ秒).jpg</code> の形式で自動採番します。ミリ秒まで含むため、連写しても重複・上書きが起きません。</p>
+
+    <h3>履歴・データ</h3>
+
+    <p><strong>Q: 履歴はいつまで残りますか？</strong></p>
+    <p>設定の保持期間を過ぎた<strong>送信成功</strong>の記録は、アプリ起動時に自動削除されます（画像も解放）。失敗・未送信の記録は自動削除されず残ります。</p>
+
+    <p><strong>Q: 撮影した写真はどこに保存されますか？</strong></p>
+    <p>端末内（アプリのデータ領域）に保存され、ユーザーが指定した WebDAV サーバーにのみ送信されます。開発元のサーバーや第三者には一切送信しません。</p>
+
+    <h3>運用</h3>
+
+    <p><strong>Q: 撮影中に画面が消えてしまいます</strong></p>
+    <p>本アプリは撮影の取りこぼしを防ぐため、アプリ使用中は自動ロックを抑止します。共有端末では端末パスコードの設定を推奨します。</p>
+
+    <p><strong>Q: 医療機器ですか？</strong></p>
+    <p><strong>いいえ。</strong>本アプリは写真の撮影・転送を行うツールであり、医療機器ではありません。診断・治療の用途には使用しないでください。</p>
+
+    <h2>お問い合わせ</h2>
+    <p>バグ報告・機能リクエスト・その他のお問い合わせは、下記までお願いします。</p>
+    <ul>
+      <li><a href="https://github.com/tetsuomassaki/tmcx-apps/issues">GitHub Issues</a></li>
+      <li>メール: <a href="mailto:tetsuo.massaki@icloud.com">tetsuo.massaki@icloud.com</a></li>
+    </ul>
+
+    <h2>提供者・著作権</h2>
+    <ul>
+      <li>提供: 眞先 哲夫（個人事業「TM医療コンサルタント」／ブランド: TMCX）</li>
+      <li>Apple、Keychain は Apple Inc. の商標です</li>
+      <li>&copy; 2026 tetsuo massaki</li>
+    </ul>
+
+    <hr style="border-color: var(--color-border); margin: 48px 0;">
+
+    <h2>FAQ (English)</h2>
+
+    <p><strong>Q: What is the difference between the built-in and external cameras?</strong></p>
+    <p>The built-in camera follows device orientation and saves upright. The external camera (HDMI capture board) captures the source resolution and aspect ratio as-is. Switch in Settings. The downstream save/transfer/history pipeline is identical.</p>
+
+    <p><strong>Q: How do I configure the WebDAV server?</strong></p>
+    <p>In the Settings tab, enter the server URL, username, password, and upload folder, then run "Test Connection". Local-IP <code>http://</code> servers on a hospital LAN are supported (the app warns about cleartext; use <code>https://</code> when possible).</p>
+
+    <p><strong>Q: What happens to photos that fail to send?</strong></p>
+    <p>Unsent/failed records are kept on device and shown as an "unsent" badge. They are resent automatically when the network recovers, and can be retried or deleted from History.</p>
+
+    <p><strong>Q: Where are my photos stored?</strong></p>
+    <p>On the device, and sent only to the WebDAV server you configure. Nothing is sent to the developer's servers or any third party.</p>
+
+    <p><strong>Q: Is this a medical device?</strong></p>
+    <p><strong>No.</strong> ShashinSendPro is a photo capture and transfer tool. It is not a medical device and must not be used for diagnosis or treatment.</p>
+
+    <h2>Contact</h2>
+    <p>For bug reports or feature requests, please use <a href="https://github.com/tetsuomassaki/tmcx-apps/issues">GitHub Issues</a> or email <a href="mailto:tetsuo.massaki@icloud.com">tetsuo.massaki@icloud.com</a>.</p>
+
+    <div class="links">
+      <a href="../../privacy-policy/shashinsendpro/">Privacy Policy / プライバシーポリシー</a>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    <p><a href="../../">&larr; TMCX Apps</a></p>
+  </footer>
+</body>
+</html>

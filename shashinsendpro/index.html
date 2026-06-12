@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShashinSendPro - 内蔵・外部カメラの写真を WebDAV へ</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <div class="app-hero">
+    <img src="icon.png" alt="ShashinSendPro" class="app-icon">
+    <h1>ShashinSendPro</h1>
+    <p class="subtitle">内蔵カメラ・外部カメラ（HDMIキャプチャボード）で撮影し、LAN上の WebDAV サーバーへ転送するタブレット専用の業務用カメラアプリ</p>
+
+    <div class="badge-row">
+      <a href="appstore.html" style="color: var(--color-accent); text-decoration: none; padding: 10px 20px; border: 1px solid var(--color-accent); border-radius: 8px; font-size: 0.9em;">App Store</a>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <section class="features">
+      <h2>機能</h2>
+      <ul>
+        <li>内蔵カメラ／外部カメラ（HDMIキャプチャボード）に対応</li>
+        <li>撮影と転送を分離した高速シャッター。連写してもテンポが落ちません</li>
+        <li>撮影 ID 単位でのグループ管理。ミリ秒精度のファイル名で連写の衝突を防止</li>
+        <li>ネットワーク復帰時に未送信を自動再送。未送信件数はバッジで表示</li>
+        <li>HEIC → JPEG 自動変換（カメラ切替で推奨設定を自動。手動上書きも可）</li>
+        <li>送信履歴の保持期間管理。成功記録は期間経過で自動整理</li>
+        <li>デモモード：WebDAV サーバーが無くても撮影〜履歴の動作を確認可能</li>
+        <li>パスワードは iOS Keychain に保存。画像はユーザー指定の WebDAV サーバーにのみ送信し、開発元サーバーには送りません</li>
+      </ul>
+    </section>
+
+    <section class="features">
+      <h2>こんな現場で</h2>
+      <ul>
+        <li>院内・施設内 LAN への写真取り込み</li>
+        <li>検査・処置の記録撮影、経過観察</li>
+        <li>外部カメラ（キャプチャボード）を使った撮影運用</li>
+      </ul>
+    </section>
+
+    <section class="features">
+      <h2>動作要件</h2>
+      <ul>
+        <li>タブレット専用（対応OS 17.0 以上）</li>
+        <li>写真の転送先となる WebDAV サーバー（ユーザー側でご用意ください）</li>
+        <li>外部カメラ利用時：USB-C 接続の HDMI キャプチャボード（任意）</li>
+      </ul>
+    </section>
+
+    <section class="features">
+      <h2>免責事項</h2>
+      <ul>
+        <li>本アプリは写真の撮影・転送を行うツールであり、医療機器ではありません。診断・治療の用途には使用しないでください</li>
+      </ul>
+    </section>
+
+    <div class="links">
+      <a href="support/">サポート / Support</a>
+      <a href="../privacy-policy/shashinsendpro/">プライバシーポリシー / Privacy Policy</a>
+    </div>
+
+    <hr style="border-color: var(--color-border); margin: 48px 0;">
+
+    <section class="features">
+      <h2>Features</h2>
+      <ul>
+        <li>Capture from the built-in camera or an external camera (HDMI capture board)</li>
+        <li>Capture decoupled from transfer for a responsive shutter &mdash; burst capture stays fast</li>
+        <li>Capture-ID grouping with millisecond-precise file names to avoid collisions</li>
+        <li>Auto-resend of unsent items on reconnect; an unsent-count badge keeps you informed</li>
+        <li>Automatic HEIC &rarr; JPEG conversion (recommended default set per camera; overridable)</li>
+        <li>Transfer history with retention management; successful records are cleaned up automatically</li>
+        <li>Demo Mode lets you exercise the capture-to-history flow without a WebDAV server</li>
+        <li>Passwords stored in iOS Keychain; images are sent only to your WebDAV server, never to the developer</li>
+      </ul>
+    </section>
+
+    <section class="features">
+      <h2>Requirements</h2>
+      <ul>
+        <li>A tablet running OS 17.0 or later</li>
+        <li>A WebDAV server (provided by the user) as the transfer destination</li>
+        <li>For the external camera: a USB-C HDMI capture board (optional)</li>
+      </ul>
+    </section>
+
+    <section class="features">
+      <h2>Disclaimer</h2>
+      <ul>
+        <li>This app is a tool for capturing and transferring photos. It is not a medical device and must not be used for diagnosis or treatment.</li>
+      </ul>
+    </section>
+
+  </div>
+
+  <footer class="site-footer">
+    <p><a href="../">&larr; TMCX Apps</a> &nbsp;|&nbsp; <a href="../privacy-policy/shashinsendpro/">Privacy Policy</a></p>
+  </footer>
+</body>
+</html>
